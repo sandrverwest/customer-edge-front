@@ -1,0 +1,262 @@
+[contenteditable]:focus, [tabindex]:focus {
+  outline-style: solid;
+  outline-width: 0.15rem;
+  outline-color: rgba(var(--mainGamma), 1);
+}
+
+[contenteditable=true]:focus {
+  position: relative;
+  box-shadow: 0rem .5rem .5rem rgba(0, 0, 0, .3);
+  vertical-align: top;
+}
+
+button > svg {
+  position: relative;
+  top: .1rem;
+}
+
+.cc-green {
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  background-color: rgb(var(--green));
+  border: 1px solid rgb(var(--green));
+  color: #FFFFFF;
+}
+
+.cc-green svg {
+  fill: #fff;
+}
+
+.cc-green:hover {
+  background-color: rgba(var(--green), .8);
+}
+
+
+.cc-orange {
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  background-color: rgb(var(--orange));
+  border: 1px solid rgb(var(--orange));
+  color: #FFFFFF;
+}
+
+.cc-orange svg {
+  fill: #fff;
+}
+
+.cc-orange:hover {
+  background-color: rgba(var(--orange), .8);
+}
+
+.cc-all {
+  margin: 0rem 1rem;
+  padding: 0.5rem;
+  border-radius: var(--radius);
+  background-color: rgb(var(--mainGamma));
+  border: 1px solid rgb(var(--mainGamma));
+  color: #FFFFFF;
+}
+
+.cc-all svg {
+  fill: #fff;
+}
+
+.cc-all:hover {
+  background-color: rgba(var(--mainGamma), .8);
+}
+
+button:disabled,
+button[disabled],
+button:disabled:hover,
+button[disabled]:hover{
+  border: 1px solid #ccc;
+  background-color: rgb(var(--bg-clr));
+  color: #777;
+  cursor: default;
+}
+
+button:disabled svg,
+button[disabled] svg {
+  fill: rgba(0,0,0, .2);
+}
+
+.adds-title, .removals-title {
+  text-align: center;
+  padding: .5rem;
+  border-top-left-radius: 0.5rem;;
+  border-top-right-radius: 0.5rem;;
+}
+
+.adds-bg {
+  background-color: #DAE8D3;
+}
+
+.removals-bg {
+  background-color: #EFC192;
+}
+
+table {
+  border: none;
+  border-spacing: 0;
+}
+
+tr, td {
+  padding: 0;
+}
+
+.item td:not(.address, .losspayee, .notes) {
+  text-align: center;
+}
+
+.item {
+  margin-bottom: 1rem;
+}
+
+.item td {
+  border-left: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+.leased-to, .requested-by, .handler {
+  border-right: 1px solid #ccc;
+}
+
+
+.item th {
+  background-color: #eeeeee;
+  padding: .2rem .5rem;
+  font-size: .8rem;
+  color: #666666;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+
+.leftb {
+  border-left: 1px solid #ccc;
+}
+.rightb {
+  border-right: 1px solid #ccc;
+}
+
+.cell-bg {
+  color: #666666;
+  background-color: #eeeeee;
+}
+
+.cell-item {
+  font-size: 1.2rem;
+  /*font-weight: bold;*/
+  color: #666666;
+  background-color: #dddddd;
+  width: 3rem;
+  height: 3rem;
+}
+
+.name, .vin {min-width: 12rem;max-width: 12rem;}
+.leased-to {min-width: 15rem; max-width: 15rem;color: #666666; background-color: #ADCD9E;font-weight: 600;}
+.unit, .make {min-width: 5rem; max-width: 5rem;}
+.type, .year, .ntl {min-width: 4rem; max-width: 42rem;}
+.value {min-width: 6rem; max-width: 6rem;}
+.asd {min-width: 4rem; max-width: 4rem;}
+.address {min-width: 11rem; max-width: 11rem;}
+
+.type {font-size: .8rem; font-weight: bold;color: #666666; background-color: #eeeeee}
+
+.primary-row td:not(.cell-item) {
+  padding: 0;
+}
+
+.secondary-row td {
+  font-size: .8rem;
+  padding: .2rem .5rem;
+}
+
+.bbr {
+  border-bottom-right-radius: 0.5rem;
+}
+
+.bbl {
+  border-bottom-left-radius: 0.5rem;
+}
+
+.requested-by {
+  font-style: italic;
+}
+
+.item-control {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: .5rem 0 .5rem .5rem;
+  position: absolute;
+  right: -2.5rem;
+  visibility: hidden;
+  opacity: 0;
+  transition-delay: .5s;
+  transition-property: opacity;
+  transition-duration: 500ms;
+}
+
+.hover-item:hover .item-control{
+  visibility: visible;
+  opacity:1;
+}
+
+.list {
+  position: relative;
+}
+
+.remove-item {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  padding: .5rem;
+  background-color: transparent;
+  border: 1px solid rgb(var(--red));
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.remove-item svg{
+  position: relative;
+  left: -.05rem;
+  top: -.05rem;
+  fill: rgb(var(--red));
+  width: 1rem;
+  height: 1rem;
+}
+
+.remove-item:hover {
+  border: 1px solid rgba(var(--red), .8);
+}
+
+.remove-item:hover svg {
+  fill: rgba(var(--red), .8);
+}
+
+.copy-item {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  background-color: transparent;
+  border: 1px solid rgb(var(--green));
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.copy-item svg{
+  fill: rgb(var(--green));
+  width: 1rem;
+  height: 1rem;
+}
+
+.copy-item:hover {
+  border: 1px solid rgba(var(--green), .8);
+}
+
+.copy-item:hover svg {
+  fill: rgba(var(--green), .8);
+}

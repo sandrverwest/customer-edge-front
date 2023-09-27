@@ -1,0 +1,68 @@
+<div class="main-block block-shadow">
+<ng-template #noFleet>
+  <div class="pad1">
+    <div class="alert-message txt-center">
+      No Fleet is found.
+    </div>
+  </div>
+</ng-template>
+
+
+  <div class="fleet-header auto-overflow-x">
+    <div class="fleet-nav">
+      <a [routerLink]="['hiring']" routerLinkActive="active">Hiring</a>
+      <a [routerLink]="['active']" routerLinkActive="active">Active</a>
+      <a [routerLink]="['leaving']" routerLinkActive="active">Terminated</a>
+    </div>
+    <div class="flex align-c gap1">
+      <input placeholder="Search...">
+      <svg class="new-ico" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
+        <path d="M16.5,10.5h-3v-3a1.5,1.5,0,0,0-3,0v3h-3a1.5,1.5,0,0,0,0,3h3v3a1.5,1.5,0,0,0,3,0v-3h3a1.5,1.5,0,0,0,0-3Z"/>
+      </svg>
+    </div>
+  </div>
+  <div class="auto-overflow-x" *ngIf="trucks.length; else noFleet">
+
+
+
+        <table>
+          <tr>
+            <th>Contractor</th>
+            <th appTooltip="Equipment Type">EQ Type</th>
+            <th appTooltip="Ownership Type">O Type</th>
+            <th>Unit#</th>
+            <th>VIN#</th>
+            <th>Year</th>
+            <th>Make</th>
+            <th>Value</th>
+            <th appTooltip="Cargo & Liability">C/L</th>
+            <th appTooltip="Physical Damage">PD</th>
+            <th appTooltip="Non Trucking Liability">NTL</th>
+            <th appTooltip="Changes Logs">C.LOGS</th>
+            <th>Drivers</th>
+            <th>Passengers</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor="let unit of trucks; let odd = odd" [class.odd]="odd">
+            <td>{{unit.contractor}}</td>
+            <td>{{unit.equipmentType}}</td>
+            <td>{{unit.ownership}}</td>
+            <td>{{unit.unitNumber}}</td>
+            <td>{{unit.vin}}</td>
+            <td>{{unit.year}}</td>
+            <td>{{unit.make}}</td>
+            <td>{{unit.value | currency}}</td>
+            <td>{{unit.cl}}</td>
+            <td>{{unit.pd}}</td>
+            <td>{{unit.ntl}}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>***</td>
+          </tr>
+        </table>
+<!--    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias maiores mollitia unde. Alias deserunt dolorem ducimus ea eaque fuga itaque, molestiae optio quo reprehenderit sed sequi sunt, tenetur vero voluptate.-->
+  </div>
+
+<!--  <add-entity [cid]="cid"></add-entity>-->
+</div>

@@ -1,0 +1,58 @@
+<ng-template appModal></ng-template>
+
+<div class="user-block" [class.last]="last">
+  <div class="user-info" [class.deactivated]="user.isDeactivated">
+    <div class="img">
+      <div *ngIf="user.photo" class="zoom-in radius50" (click)="showPhotoUploader()">
+          <svg viewBox="0 0 512 512">
+            <path d="M288,192h-32v-32c0-17.673-14.327-32-32-32s-32,14.327-32,32v32h-32c-17.673,0-32,14.327-32,32s14.327,32,32,32h32v32  c0,17.673,14.327,32,32,32s32-14.327,32-32v-32h32c17.673,0,32-14.327,32-32S305.673,192,288,192z"/>
+            <path d="M502.661,457.569l-99.046-99.067c74.18-99.06,54.01-239.499-45.05-313.678S119.067-9.187,44.887,89.873  s-54.01,239.499,45.05,313.678c79.587,59.597,188.929,59.623,268.544,0.063l99.088,99.088c12.452,12.452,32.64,12.452,45.092,0  c12.452-12.452,12.452-32.64,0-45.092L502.661,457.569z M225.116,384.49c-88.02,0-159.374-71.354-159.374-159.374  S137.097,65.742,225.116,65.742s159.374,71.354,159.374,159.374C384.397,313.097,313.098,384.397,225.116,384.49z"/>
+          </svg>
+      </div>
+      <div *ngIf="!user.photo && !user.isDeactivated" class="zoom-in radius50" (click)="showPhotoUploader()">
+        <svg viewBox="0 0 512.022 512.022">
+          <g>
+            <path d="M165.558,141.889l59.328-59.349l0.448,290.816c0,17.673,14.327,32,32,32l0,0c17.673,0,32-14.327,32-32l-0.448-290.453   l58.987,58.987c12.278,12.712,32.536,13.064,45.248,0.786s13.064-32.536,0.786-45.248c-0.258-0.267-0.52-0.529-0.786-0.786   l-68.523-68.523c-37.49-37.491-98.274-37.491-135.765-0.001c0,0-0.001,0.001-0.001,0.001L120.31,96.641   c-12.278,12.712-11.926,32.97,0.786,45.248C133.497,153.866,153.157,153.866,165.558,141.889z"/>
+            <path d="M480.011,309.355c-17.673,0-32,14.327-32,32v97.941c-0.012,4.814-3.911,8.714-8.725,8.725H72.736   c-4.814-0.012-8.714-3.911-8.725-8.725v-97.941c0-17.673-14.327-32-32-32s-32,14.327-32,32v97.941   c0.047,40.146,32.58,72.678,72.725,72.725h366.549c40.146-0.047,72.678-32.58,72.725-72.725v-97.941   C512.011,323.682,497.684,309.355,480.011,309.355z"/>
+          </g>
+        </svg>
+      </div>
+      <img *ngIf="user.photo; else noPhoto" [src]="environment.API_URL + '/users/image/' + user.photo + '?v=' + imageKey">
+      <ng-template #noPhoto>
+        <svg viewBox="0 0 512 512">
+          <g>
+            <circle cx="256" cy="128" r="128"/>
+            <path d="M256,298.667c-105.99,0.118-191.882,86.01-192,192C64,502.449,73.551,512,85.333,512h341.333   c11.782,0,21.333-9.551,21.333-21.333C447.882,384.677,361.99,298.784,256,298.667z"/>
+          </g>
+        </svg>
+      </ng-template>
+    </div>
+    <div class="user-details">
+      <div class="brief-info">
+        <div class="name">{{user.first_name}} {{user.last_name}}</div>
+        <div *ngIf="user.email" class="email">{{user.email}}</div>
+        <div *ngIf="user.phone" class="phone">{{user.phone}}, Ext.: {{user.extension}}</div>
+      </div>
+      <div class="job-position">
+        {{user.department}} <ng-container *ngIf="user.department && user.position">•</ng-container> {{user.position}}
+      </div>
+      <div class="user-controls">
+        <div appTooltip="Edit">
+          <svg viewBox="0 0 24 24" class="editing" [class.active]="isEditMode" (click)="isEditMode = !isEditMode; isSecuringMode = false">
+            <path d="M9,12c3.309,0,6-2.691,6-6S12.309,0,9,0,3,2.691,3,6s2.691,6,6,6Zm0-10c2.206,0,4,1.794,4,4s-1.794,4-4,4-4-1.794-4-4,1.794-4,4-4Zm1.75,14.22c-.568-.146-1.157-.22-1.75-.22-3.86,0-7,3.14-7,7,0,.552-.448,1-1,1s-1-.448-1-1c0-4.962,4.038-9,9-9,.762,0,1.519,.095,2.25,.284,.535,.138,.856,.683,.719,1.218-.137,.535-.68,.856-1.218,.719Zm12.371-4.341c-1.134-1.134-3.11-1.134-4.243,0l-6.707,6.707c-.755,.755-1.172,1.76-1.172,2.829v1.586c0,.552,.448,1,1,1h1.586c1.069,0,2.073-.417,2.828-1.172l6.707-6.707c.567-.567,.879-1.32,.879-2.122s-.312-1.555-.878-2.121Zm-1.415,2.828l-6.708,6.707c-.377,.378-.879,.586-1.414,.586h-.586v-.586c0-.534,.208-1.036,.586-1.414l6.708-6.707c.377-.378,1.036-.378,1.414,0,.189,.188,.293,.439,.293,.707s-.104,.518-.293,.707Z"/>
+          </svg>
+        </div>
+        <div appTooltip="Seccurity">
+          <svg viewBox="0 0 24 24" class="security" [class.active]="isSecuringMode" (click)="isSecuringMode = !isSecuringMode; isEditMode = false">
+            <path d="M19,8.424V7A7,7,0,0,0,5,7V8.424A5,5,0,0,0,2,13v6a5.006,5.006,0,0,0,5,5H17a5.006,5.006,0,0,0,5-5V13A5,5,0,0,0,19,8.424ZM7,7A5,5,0,0,1,17,7V8H7ZM20,19a3,3,0,0,1-3,3H7a3,3,0,0,1-3-3V13a3,3,0,0,1,3-3H17a3,3,0,0,1,3,3Z"/>
+            <path d="M12,14a1,1,0,0,0-1,1v2a1,1,0,0,0,2,0V15A1,1,0,0,0,12,14Z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-user-editing *ngIf="isEditMode" [user]="user" (userEmitter)="updateEmitter($event)" ></app-user-editing>
+  <app-user-securing *ngIf="isSecuringMode" [user]="user" [index]="index" (userEmitter)="updateEmitter($event)" (userDeletionEmitter)="deletionEmitter($event)"></app-user-securing>
+</div>
+

@@ -1,0 +1,77 @@
+<div class="level-container">
+  <form [formGroup]="levelForm" (submit)="updateLevel()" class="guideline-grid">
+    <div class="grid-title">Level Name:</div>
+    <div><input formControlName="level"></div>
+
+    <div class="hr"><hr></div>
+
+    <div class="grid-title">Driver Eligibility:</div>
+    <div class="flex gap05 colum">
+      <ng-container formArrayName="driverEligibility" *ngFor="let driverEligibility of driverEligibility.controls; let index = index">
+        <div class="flex align-c justify-b row gap05">
+          <textarea appAutoResizeTextarea [formControlName]="index" rows="1"></textarea>
+          <span class="delete-cross-small" (click)="removeEligibility(index)">
+            <svg viewBox="0 0 24 24">
+              <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+            </svg>
+          </span>
+        </div>
+      </ng-container>
+      <div>
+        <button type="button" (click)="anotherDriverEligibility()" class="another-row" [disabled]="driverEligibility.invalid">+</button>
+      </div>
+    </div>
+
+    <div class="hr"><hr></div>
+
+    <div class="grid-title">Unacceptable Driving Records:</div>
+    <div class="flex gap05 colum">
+      <ng-container formArrayName="unacceptableDrivingRecords" *ngFor="let drivingRecord of drivingRecords.controls; let index = index">
+        <div class="flex align-c justify-b row gap05">
+          <textarea appAutoResizeTextarea [formControlName]="index" rows="1"></textarea>
+          <span class="delete-cross-small" (click)="removeDrivingRecord(index)">
+            <svg viewBox="0 0 24 24">
+              <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+            </svg>
+          </span>
+        </div>
+      </ng-container>
+      <div>
+        <button type="button" (click)="anotherDrivingRecord()" class="another-row" [disabled]="drivingRecords.invalid">+</button>
+      </div>
+    </div>
+
+    <div class="hr"><hr></div>
+
+    <div class="grid-title">Quote for Insurance:</div>
+    <div>Drivers for Level <b>{{this.levelForm.get('level')?.value}}</b> companies are <select class="required" formControlName="requiredQuote"><option value="true">required</option><option value="false">NOT required</option></select> to be quoted for insurance prior to being hired</div>
+
+    <div class="hr"><hr></div>
+
+    <div class="grid-title">Documents for Insurance Quote:</div>
+    <div class="flex gap05 colum">
+      <ng-container formArrayName="documentsForQuote" *ngFor="let drivingRecord of documents.controls; let index = index">
+        <div class="flex align-c justify-b row gap05">
+          <textarea appAutoResizeTextarea [formControlName]="index" rows="1"></textarea>
+          <span class="delete-cross-small" (click)="removeDocument(index)">
+            <svg viewBox="0 0 24 24">
+              <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+            </svg>
+          </span>
+        </div>
+      </ng-container>
+      <div>
+        <button type="button" (click)="anotherDocument()" class="another-row" [disabled]="documents.invalid">+</button>
+      </div>
+    </div>
+
+    <div class="hr"><hr></div>
+
+    <div class="grid-title">Clearance:</div>
+    <div><textarea appAutoResizeTextarea formControlName="clearance"></textarea></div>
+    <div class="flex justify-c" style="grid-column: 1/3;">
+      <button class="blue-b" [disabled]="levelForm.invalid">Update Level <b>{{this.levelForm.get('level')?.value}}</b></button>
+      <button type="button" (click)="deleteLevel()" class="red-b">Delete Level <b>{{this.levelForm.get('level')?.value}}</b></button>
+    </div>
+  </form>
+</div>

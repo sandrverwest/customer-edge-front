@@ -1,0 +1,36 @@
+  <div class="error-container" *ngIf="successErrorsService.errorMessage$ | async as error">
+    <div class="flex align-c alert-ico">
+      <svg viewBox="0 0 24 24">
+        <path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/>
+        <path d="M12,5a1,1,0,0,0-1,1v8a1,1,0,0,0,2,0V6A1,1,0,0,0,12,5Z"/>
+        <rect x="11" y="17" width="2" height="2" rx="1"/>
+      </svg>
+    </div>
+    <div>
+      <b>{{error.subject}}:</b><ng-container *ngIf="error.error.error.error; else elseError"> {{error.error.error.error}}</ng-container> <ng-template #elseError> {{error.error.statusText}}, code: {{error.error.status}}</ng-template>
+    </div>
+    <div class="flex align-c close-error" (click)="successErrorsService.removeError()">
+      <svg viewBox="0 0 24 24">
+        <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+      </svg>
+    </div>
+  </div>
+
+
+  <div class="error-container" *ngIf="successErrorsService.wsErrorMessage$ | async as error">
+    <div class="flex align-c alert-ico">
+      <svg viewBox="0 0 24 24">
+        <path d="M12,0A12,12,0,1,0,24,12,12.013,12.013,0,0,0,12,0Zm0,22A10,10,0,1,1,22,12,10.011,10.011,0,0,1,12,22Z"/>
+        <path d="M12,5a1,1,0,0,0-1,1v8a1,1,0,0,0,2,0V6A1,1,0,0,0,12,5Z"/>
+        <rect x="11" y="17" width="2" height="2" rx="1"/>
+      </svg>
+    </div>
+    <div>
+      <b>{{error.subject}}:</b> {{error.error}}
+    </div>
+    <div class="flex align-c close-error" (click)="successErrorsService.removeError()">
+      <svg viewBox="0 0 24 24">
+        <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+      </svg>
+    </div>
+  </div>

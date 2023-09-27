@@ -1,0 +1,26 @@
+.card {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.card > .label {
+  font-weight: 600;
+  color: #666;
+}
+
+.blue-card {
+  background-color: rgba(var(--mainGamma), 0.1);
+}
+
+.green-card {
+  background-color: rgba(var(--green), 0.1);
+}
+
+.orange-card {
+  background-color: rgba(var(--orange), 0.1);
+}

@@ -1,0 +1,78 @@
+.levels {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.levels > a {
+  position: relative;
+  font-size: 3rem;
+  padding: 1rem;
+  background: rgba(var(--bg-clr), 1);
+  border-bottom: 3px solid transparent;
+  border-radius: var(--radius);
+}
+
+.levels > a.active, .levels > a:hover:not(.new) {
+  background: rgba(var(--link-clr), .05);
+  border-bottom: 3px solid rgba(var(--mainGamma), 0.7);
+}
+
+.levels > a.new {
+  color: #ccc;
+  background: rgba(var(--bg-clr), .7);
+}
+
+.levels > a.new:hover {
+  color: #999;
+  background: rgba(var(--bg-clr), 1);
+}
+
+.level-container {
+  padding-top: 1.5rem;
+  margin-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.guideline-grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.hr {
+  grid-column: 1/3;
+}
+
+.grid-title {
+  font-weight: 600;
+  color: #333;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 1em;
+  text-indent: -.7em;
+}
+
+li::before {
+  content: "• ";
+  color: rgb(var(--link-clr)); /* or whatever color you prefer */
+}
+
+.required {
+  font-weight: 600;
+}
+
+.row:hover .delete-cross-small{
+  visibility: visible;
+  opacity: 1;
+}

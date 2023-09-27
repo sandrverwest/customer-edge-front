@@ -1,0 +1,52 @@
+<div class="backdrop" (click)="close.emit()"></div>
+  <div class="modal">
+    <div class="modal-title">
+      <div class="m-title">LEVEL <b>{{data.level}}</b> DRIVER GUIDELINES</div>
+      <div class="m-close" (click)="close.emit()">
+        <svg viewBox="0 0 24 24">
+          <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+        </svg>
+    </div>
+  </div>
+  <div class="modal-content scrollbar">
+
+    <div class="guideline-grid">
+      <div class="grid-title">Driver Eligibility:</div>
+      <div>
+        <ul>
+          <li *ngFor="let item of data.driverEligibility">{{item}}</li>
+        </ul>
+      </div>
+
+      <div class="hr"><hr></div>
+
+      <div class="grid-title">Unacceptable Driving Records:</div>
+      <div>
+        <ul>
+          <li *ngFor="let item of data.unacceptableDrivingRecords">{{item}}</li>
+        </ul>
+      </div>
+
+      <div class="hr"><hr></div>
+
+      <div class="grid-title">Quote for Insurance:</div>
+      <div *ngIf="data.requiredQuote">Drivers for Level <b>{{data.level}}</b> companies are <b>required</b> to be quoted for insurance prior to being hired</div>
+      <div *ngIf="!data.requiredQuote">Drivers for Level <b>{{data.level}}</b> companies are <b>NOT</b> required to be quoted for insurance and only need to meet the above guidelines</div>
+      <div class="hr"><hr></div>
+
+      <div class="grid-title">Documents for Insurance Quote:</div>
+      <div>
+        <ul *ngIf="data.documentsForQuote.length; else asd">
+          <li *ngFor="let item of data.documentsForQuote">{{item}}</li>
+        </ul>
+        <ng-template #asd>Not Applicable</ng-template>
+      </div>
+
+      <div class="hr"><hr></div>
+
+      <div class="grid-title">Clearance:</div>
+      <div>{{data.clearance}}</div>
+    </div>
+
+  </div>
+</div>

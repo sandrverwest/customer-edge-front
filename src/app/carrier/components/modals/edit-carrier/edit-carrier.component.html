@@ -1,0 +1,98 @@
+<div class="backdrop" (click)="close.emit()"></div>
+<div class="modal">
+    <div class="modal-title">
+        <div class="m-title"><b>{{data.name}}</b> - Editing</div>
+        <div class="m-close" (click)="close.emit()">
+            <svg viewBox="0 0 24 24">
+                <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+            </svg>
+        </div>
+    </div>
+    <div class="modal-content scrollbar radius0" style="border-radius: 0;">
+
+      <form [formGroup]="form" autocomplete="off">
+        <div class="grid tmpl-1x3 align-c gap1">
+          <label for="name">Name:</label><div><input id="name" formControlName="name" size="30"></div>
+
+          <label for="name">MC#:</label><div><input id="mc" formControlName="mc" size="8" readonly></div>
+
+          <label for="usdot">USDOT#:</label><div><input id="usdot" formControlName="usdot" size="8" readonly></div>
+        </div>
+
+        <hr>
+
+        <div class="grid tmpl-1x3 align-c gap05">
+          <label for="level">Level:</label>
+          <div>
+            <select id="level" formControlName="level">
+              <option *ngFor="let level of levels" [value]="level.level">{{level.level}}</option>
+            </select>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="grid tmpl-1x3 align-b gap05">
+          <ng-container formArrayName="divisions">
+            <label for="divisions">Divisions:</label>
+            <div class="flex gap05 colum">
+              <ng-container *ngFor="let item of divisions.controls; let i = index">
+                <div class="flex row align-c gap05">
+                  <input [formControlName]="i" id="divisions" size="7">
+                  <span class="delete-cross-small" (click)="removeDivision(i)">
+                    <svg viewBox="0 0 24 24">
+                      <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+                    </svg>
+                  </span>
+                </div>
+              </ng-container>
+              <div>
+                <button class="another-row" (click)="anotherDivision()">+ division</button>
+              </div>
+            </div>
+          </ng-container>
+
+          <ng-container formArrayName="operations">
+            <label for="operations">Operations:</label>
+            <div class="flex gap05 colum">
+              <ng-container *ngFor="let item of operations.controls; let i = index">
+                <div class="flex row align-c gap05">
+                  <input [formControlName]="i" id="operations" size="7">
+                  <span class="delete-cross-small" (click)="removeOperation(i)">
+                    <svg viewBox="0 0 24 24">
+                      <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+                    </svg>
+                  </span>
+                </div>
+              </ng-container>
+              <div>
+                <button class="another-row" (click)="anotherOperation()">+ operation</button>
+              </div>
+            </div>
+          </ng-container>
+        </div>
+
+        <hr>
+
+        <div class="grid tmpl-1x3 align-c gap05">
+          <label for="phone">Phone:</label><div><input id="phone" formControlName="phone"></div>
+          <label for="fax">Fax:</label><div><input id="fax" formControlName="fax"></div>
+        </div>
+
+        <hr>
+
+        <div class="grid tmpl-1x3 align-c gap05" formGroupName="address">
+          <label for="addressLine">Address Line:</label><div><input id="addressLine" formControlName="addressLine" size="30"></div>
+          <label for="city">City:</label><div><input id="city" formControlName="city" size="18"></div>
+          <label for="state">State:</label><div><input id="state" formControlName="state" size="2"></div>
+          <label for="zip">Zip:</label><div><input id="zip" formControlName="zip" size="5"></div>
+        </div>
+
+      </form>
+    </div>
+    <div>
+      <div class="sticky-container flex justify-c">
+        <button type="button" class="blue-b" (click)="saveCarrier()" [disabled]="this.form.invalid">Save<button-loader></button-loader></button>
+      </div>
+    </div>
+</div>

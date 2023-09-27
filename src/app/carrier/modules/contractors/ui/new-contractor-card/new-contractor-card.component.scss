@@ -1,0 +1,27 @@
+.new-contractor-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  background: rgba(var(--bg-clr), 1);
+  color: rgba(var(--link-clr), 1);
+  border-radius: var(--radius);
+  //border: 1px solid rgba(0,0,0, .1);
+  cursor: pointer;
+}
+
+.new-contractor-card:hover {
+  background: rgba(var(--link-clr), .1);
+}
+
+.new-contractor-card svg {
+  width: 4rem;
+  height: 4rem;
+  fill: rgba(var(--link-clr), .5);
+}
+
+.active {
+  background: rgba(var(--link-clr), .1);
+}
+

@@ -1,0 +1,40 @@
+<ng-template appModal></ng-template>
+
+<div class="block" >
+  <div class="title">
+    <div (click)="expandCoverages()" [appTooltip]="isCollapsed ? 'Expand Coverages' : 'Collapse Coverages'">
+      <div class="flex align-c gap05 pointer">
+        <span>Insurance</span>
+        <span class="collapse">
+          <ng-container *ngIf="isCollapsed">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.41,9H17.59a1,1,0,0,1,.7,1.71l-5.58,5.58a1,1,0,0,1-1.42,0L5.71,10.71A1,1,0,0,1,6.41,9Z"/>
+            </svg>
+          </ng-container>
+          <ng-container *ngIf="!isCollapsed">
+            <svg viewBox="0 0 24 24">
+              <path d="M6.41,16H17.59a1,1,0,0,0,.7-1.71L12.71,8.71a1,1,0,0,0-1.42,0L5.71,14.29A1,1,0,0,0,6.41,16Z"/>
+            </svg>
+          </ng-container>
+        </span>
+      </div>
+    </div>
+    <div class="flex align-c" (click)="addCoverages()">
+      <svg class="new-ico" width="1.5rem" height="1.5rem" viewBox="0 0 24 24">
+        <path d="M16.5,10.5h-3v-3a1.5,1.5,0,0,0-3,0v3h-3a1.5,1.5,0,0,0,0,3h3v3a1.5,1.5,0,0,0,3,0v-3h3a1.5,1.5,0,0,0,0-3Z"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="auto-overflow-x">
+    <app-coverage *ngFor="let coverage of coverages; let index = index" [coverage]="coverage" [index]="index" [isCollapsed]="isCollapsed" (coverageDeleteEmitter)="deleteCoverage($event)"></app-coverage>
+
+    <ng-container *ngIf="!coverages.length">
+      <div class="flex justify-c pad1">
+        <div>
+          <button class="blue-b" (click)="addCoverages()">Add Coverage</button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

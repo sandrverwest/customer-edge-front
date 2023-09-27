@@ -1,0 +1,10 @@
+<div class="levels">
+  <a *ngFor="let level of levels" [routerLink]="['level', level.level]" routerLinkActive="active">
+    {{level.level}}
+  </a>
+  <a [routerLink]="['/', 'admin', 'insurance', 'levels']" fragment="new" class="new">
+    +
+  </a>
+</div>
+<router-outlet></router-outlet>
+<app-new-level *ngIf="isNewMode" (newLevelEmitter)="levelsOnPush($event)"></app-new-level>

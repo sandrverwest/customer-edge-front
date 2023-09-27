@@ -1,0 +1,83 @@
+<div class="backdrop" (click)="close.emit()"></div>
+<div class="modal">
+  <div class="modal-title">
+    <div class="m-title">
+      <ng-container *ngIf="contractor"><b>Name</b> - Edit Coverage</ng-container>
+      <ng-container *ngIf="!contractor">New Contractor</ng-container>
+    </div>
+    <div class="m-close" (click)="close.emit()">
+      <svg viewBox="0 0 24 24">
+        <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+      </svg>
+    </div>
+  </div>
+  <div class="modal-content scrollbar radius0">
+
+    <div class="flex align-c justify-a">
+      <new-contractor-card contractorType="Business" [isActive]="isBusinessForm" (click)="showBusinessForm()"></new-contractor-card>
+      <div><div class="or"><span>OR</span></div></div>
+      <new-contractor-card contractorType="Individual" [isActive]="isIndividualForm" (click)="showIndividualForm()"></new-contractor-card>
+    </div>
+
+    <form *ngIf="isBusinessForm" [formGroup]="form" autocomplete="off">
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="businessName">Business:</label><div><input (blur)="trimValue('businessName')" id="businessName" size="30" formControlName="businessName" placeholder="required"></div>
+        <label for="ssn_einBusiness">EIN:</label><div><input  (blur)="valueToEIN()" id="ssn_einBusiness" formControlName="ssn_ein" size="10" placeholder="required"></div>
+        <label for="firstNameBusiness">First Name:</label><div><input (blur)="trimValue('firstName')" id="firstNameBusiness" formControlName="firstName" size="20" placeholder="required"></div>
+        <label for="lastNameBusiness">Last Name:</label><div><input (blur)="trimValue('lastName')" id="lastNameBusiness" formControlName="lastName" size="20" placeholder="required"></div>
+      </div>
+
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="phoneBusiness">Phone:</label><div><input (blur)="valueToPhone()" id="phoneBusiness" formControlName="phone" size="12"></div>
+        <label for="emailBusiness">Email:</label><div><input (blur)="trimValue('email')" id="emailBusiness" formControlName="email" size="20"></div>
+      </div>
+
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="addressBusiness">Address Line:</label><div><input (blur)="trimValue('address')" id="addressBusiness" formControlName="address" size="30"></div>
+        <label for="cityBusiness">City:</label><div><input (blur)="trimValue('city')" id="cityBusiness" formControlName="city" size="18"></div>
+        <label for="stateBusiness">State:</label><div><input (blur)="trimValue('state')" id="stateBusiness" formControlName="state" size="2" maxlength="2"></div>
+        <label for="zipBusiness">ZIP:</label><div><input (blur)="trimValue('zip')" id="zipBusiness" formControlName="zip" size="5" maxlength="5"></div>
+      </div>
+
+    </form>
+
+    <form *ngIf="isIndividualForm" [formGroup]="form" autocomplete="off">
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="firstNameIndividual">First Name:</label><div><input (blur)="trimValue('firstName')" id="firstNameIndividual" formControlName="firstName" size="20" placeholder="required"></div>
+        <label for="lastNameIndividual">Last Name:</label><div><input (blur)="trimValue('lastName')" id="lastNameIndividual" formControlName="lastName" size="20" placeholder="required"></div>
+        <label for="ssn_einIndividual">SSN:</label><div><input (blur)="valueToSSN()" id="ssn_einIndividual" formControlName="ssn_ein" size="10" placeholder="required"></div>
+      </div>
+
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="phoneIndividual">Phone:</label><div><input (blur)="valueToPhone()" id="phoneIndividual" formControlName="phone" size="12"></div>
+        <label for="emailIndividual">Email:</label><div><input (blur)="trimValue('email')" id="emailIndividual" formControlName="email" size="20"></div>
+      </div>
+
+      <hr>
+
+      <div class="grid tmpl-1x3 align-b gap1">
+        <label for="addressIndividual">Address Line:</label><div><input (blur)="trimValue('address')" id="addressIndividual" formControlName="address" size="30"></div>
+        <label for="cityIndividual">City:</label><div><input (blur)="trimValue('city')" id="cityIndividual" formControlName="city" size="18"></div>
+        <label for="stateIndividual">State:</label><div><input (blur)="trimValue('state')" id="stateIndividual" formControlName="state" size="2" maxlength="2"></div>
+        <label for="zipIndividual">ZIP:</label><div><input (blur)="trimValue('zip')" id="zipIndividual" formControlName="zip" size="5" maxlength="5"></div>
+      </div>
+
+    </form>
+  </div>
+  <div>
+    <div *ngIf="this.form" class="sticky-container flex justify-c">
+      <button *ngIf="!contractor" class="blue-b" [disabled]="this.form.invalid" (click)="addContractor()">Create Contractor<button-loader></button-loader></button>
+      <button *ngIf="contractor" class="blue-b" [disabled]="this.form.invalid" (click)="addContractor()">Save<button-loader></button-loader></button>
+    </div>
+  </div>
+</div>

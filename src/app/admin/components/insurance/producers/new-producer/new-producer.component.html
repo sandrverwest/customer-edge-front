@@ -1,0 +1,58 @@
+<form [formGroup]="newProducerForm" (submit)="submitNewProducer()" autocomplete="off">
+  <div class="prod-container flex align-c justify-b" style="border-bottom: 0; padding-bottom: 0; margin-bottom: 0;">
+
+    <div class="new-producer">
+
+      <div class="end prod-name">Producer:</div>
+      <div>
+        <span class="tooltip-prod">
+          <input type="text" formControlName="name" placeholder="Business Name">
+          <span class="tooltiptext" *ngIf="newProducerForm.get('name')?.invalid && newProducerForm.get('name')?.touched">
+            <div *ngIf="newProducerForm.get('name')?.errors?.required">Required filed</div>
+          </span>
+        </span>
+      </div>
+
+      <div class="end">COI Requests:</div>
+      <div>
+        <span class="tooltip-prod">
+          <input type="text" name="coi" formControlName="coiRequests" placeholder="Email">
+          <span class="tooltiptext" *ngIf="newProducerForm.get('coiRequests')?.invalid && newProducerForm.get('coiRequests')?.touched">
+            <div *ngIf="newProducerForm.get('coiRequests')?.errors?.required">Required filed</div>
+            <div *ngIf="newProducerForm.get('coiRequests')?.errors?.email">Email format <b><i>name@domain</i></b></div>
+          </span>
+        </span>
+      </div>
+
+
+      <ng-container formArrayName="agents" *ngFor="let control of agents.controls; let agentIndex = index; let odd = odd">
+        <div class="end" [class.odd]="">Agent #{{agentIndex+1}}:</div>
+        <div [formGroupName]="agentIndex" class="agent-row">
+          <span class="tooltip-prod">
+            <input type="text" name="agent-name" formControlName="name" placeholder="Name">
+            <span class="bottom-tooltiptext" *ngIf="agents.controls[agentIndex].get('name')?.invalid && agents.controls[agentIndex].get('name')?.touched">
+              <div *ngIf="agents.controls[agentIndex].get('name')?.errors?.required">Required filed</div>
+            </span>
+          </span>
+          <span class="at-sign" [class.at-valid]="agents.controls[agentIndex].get('name')?.valid && agents.controls[agentIndex].get('email')?.valid">@</span>
+          <span class="tooltip-prod">
+            <input type="email" name="agent-email" formControlName="email" placeholder="Email">
+            <span class="tooltiptext" *ngIf="agents.controls[agentIndex].get('email')?.invalid && agents.controls[agentIndex].get('email')?.touched">
+              <div *ngIf="agents.controls[agentIndex].get('email')?.errors?.required">Required filed</div>
+              <div *ngIf="agents.controls[agentIndex].get('email')?.errors?.email">Email format <b><i>name@domain</i></b></div>
+            </span>
+          </span>
+          <span class="remove-agent" (click)="removeAgent(agentIndex)">
+            <svg viewBox="0 0 24 24" width="1rem" height="1rem">
+              <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+            </svg>
+          </span>
+        </div>
+      </ng-container>
+
+      <div class="end"></div><div><button type="button" (click)="anotherAgent()" class="another-row" [disabled]="agents.invalid">+ agent</button></div>
+      <div></div><div><button class="blue-b" [disabled]="!newProducerForm.valid">Add Producer</button></div>
+    </div>
+
+  </div>
+</form>

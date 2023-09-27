@@ -1,0 +1,71 @@
+header {
+  background: rgb(var(--mainGamma));
+  background: linear-gradient(90deg, rgba(var(--mainGamma),1) 0%, rgba(var(--mainGamma),.6) 100%);
+  color: #fff;
+}
+
+header > div {
+  height: 3.5rem;
+  margin: 0 1rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0rem 0rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.customer {
+  font-weight: 400;
+  margin-right: .3rem;
+  padding: .1rem .3rem;
+  border: 1px solid #FFF;
+  border-bottom-left-radius: .8rem;
+  border-top-right-radius: .8rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links a {
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+  color: #fff;
+  padding: 0 1rem;
+  text-decoration: none;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255,255,255, .1);
+}
+
+.user-bar {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.active {
+  background-color: rgba(255,255,255, .1);
+}
+
+.logo {
+  font-weight: 300;
+  font-size: 1.2rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

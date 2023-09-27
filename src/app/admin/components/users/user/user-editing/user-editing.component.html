@@ -1,0 +1,18 @@
+<div class="user-edit-block">
+  <form [formGroup]="userEditForm" (submit)="saveUserInfo()" autocomplete="off">
+    <label for="first_name">First Name:</label><div><input id="first_name" formControlName="first_name" size="17"></div>
+    <label for="last_name">Last Name:</label><div><input id="last_name" formControlName="last_name" size="17"></div>
+
+    <label for="email">Email:</label><div><input id="email" formControlName="email" size="30"></div>
+
+    <label for="phone">Phone:</label>
+    <div class="phone-editing">
+      <input id="phone" formControlName="phone" size="12">
+      <label for="ext">Ext.:</label><input id="ext" formControlName="extension" size="3">
+    </div>
+
+    <label for="department">Department:</label><div><input id="department" formControlName="department" size="17"></div>
+    <label for="position">Position:</label><div><input id="position" formControlName="position" size="17"></div>
+    <button type="submit" class="blue-b" style="grid-column: 1/5">Save</button>
+  </form>
+</div>

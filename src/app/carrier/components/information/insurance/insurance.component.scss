@@ -1,0 +1,82 @@
+.insurance-info {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: .5rem;
+  margin: 1rem 0;
+}
+
+.title-line div.expiration {
+  font-size: .8rem;
+  font-style: italic;
+  color:rgba(var(--link-clr), 1);
+  padding: 0 .5rem;
+  background-color: #fff;
+}
+.title-line > .position {
+  position: relative;
+  bottom: -50%;
+}
+.edit-menu {
+  display: flex;
+  align-items: center;
+  color:rgba(var(--link-clr), 1);
+  padding: 0 .5rem;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.edit-menu > svg {
+  width: 1rem;
+  height: 1rem;
+  fill: rgba(var(--link-clr), .5);
+}
+.edit-menu:hover > svg {
+  fill: rgba(var(--link-clr), 1);
+}
+
+.insurance-info > .l {
+  text-align: left;
+  color:#333;
+}
+
+.insurance-info > .r {
+  text-align: right;
+  font-weight: 600;
+  color:#666;
+  /* color: rgb(var(--link-clr)) */
+}
+
+.email::before {
+  content: "\2709";
+  color: rgb(var(--link-clr));
+  padding: .5rem;
+  margin-left: .5rem;
+}
+
+.email > a {
+  text-decoration: none;
+}
+.email > a:hover {
+  text-decoration: underline;
+}
+
+.name::before {
+  content: '\2022';
+  color: rgb(var(--link-clr));
+  margin-right: .5rem;
+}
+
+.list {
+  margin-bottom: .5rem;
+}
+
+.collapse {
+  display: flex;
+  align-items: center;
+}
+
+.collapse svg {
+  width: 1rem;
+  height: 1rem;
+  fill: rgba(0,0,0, 0.2);
+}

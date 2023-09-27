@@ -1,0 +1,29 @@
+  <table class="item" [formGroup]="changesItem">
+    <tr>
+      <th class="leftb">Item</th><th colspan="2">Owner</th><th>Unit</th><th>Type</th><th>VIN#</th><th>Year</th><th>Make</th><th>Value</th><th>NTL</th><th class="rightb">Leased to</th></tr>
+    <tr class="primary-row">
+      <td class="cell-item">#{{i+1}}</td>
+      <td colspan="2" class="name" tabindex="1" contenteditable="false" formControlName="owner">{{add.name}}</td>
+      <td class="type">{{add.type}}</td>
+      <td class="unit" tabindex="1" contenteditable="false" formControlName="unit">{{add.unit}}</td>
+      <td class="vin"  tabindex="1" contenteditable="false" formControlName="vin">{{add.vin}}</td>
+      <td class="year" tabindex="1" contenteditable="false" formControlName="year">{{add.year}}</td>
+      <td class="make" tabindex="1" contenteditable="false" formControlName="make">{{add.make}}</td>
+      <td class="value adds-bg" tabindex="1" contenteditable="false" formControlName="value">{{add.value}}</td>
+      <td class="ntl adds-bg">{{add.ntl}}</td>
+      <td class="leased-to adds-bg">{{add.leasedTo}}</td>
+    </tr>
+    <tr class="secondary-row">
+      <td colspan="2" rowspan="2" class="asd cell-bg bbl">Address:</td>
+      <td class="address" tabindex="1" contenteditable="false" formControlName="addressLine1">{{add.addressLine1}}</td>
+      <td colspan="2" class="cell-bg">Loss Payee:</td>
+      <td colspan="5" class="losspayee" tabindex="1" contenteditable="false" formControlName="lossPayee">{{add.lossPayee}}</td>
+      <td class="cell-bg requested-by">Requested By:</td>
+    </tr>
+    <tr class="secondary-row">
+      <td class="address" tabindex="1" contenteditable="false" formControlName="addressLine2">{{add.addressLine2}}</td>
+      <td colspan="2" class="cell-bg">Notes:</td>
+      <td colspan="5" class="notes" tabindex="1" contenteditable="false" formControlName="notes">{{add.notes}}</td>
+      <td class="bbr handler">{{add.requestedBy}}</td>
+    </tr>
+  </table>

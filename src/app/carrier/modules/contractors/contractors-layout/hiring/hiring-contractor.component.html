@@ -1,0 +1,34 @@
+<table *ngIf="contractors.length; else noFleet">
+  <tr>
+    <th>Contractor</th>
+    <th>SSN/EIN</th>
+    <th>Representative</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>City</th>
+    <th>State</th>
+    <th>ZIP</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let contractor of contractors; let odd = odd" [class.odd]="odd">
+    <td>{{contractor.businessName ? contractor.businessName : contractor.firstName + ' ' + contractor.lastName}}</td>
+    <td>{{contractor.ssn_ein}}</td>
+    <td>{{contractor.firstName}} {{contractor.lastName}}</td>
+    <td>{{contractor.phone}}</td>
+    <td>{{contractor.email}}</td>
+    <td>{{contractor.address}}</td>
+    <td>{{contractor.city}}</td>
+    <td>{{contractor.state}}</td>
+    <td>{{contractor.zip}}</td>
+    <td>***</td>
+  </tr>
+</table>
+
+<ng-template #noFleet>
+  <div class="pad1">
+    <div class="alert-message txt-center">
+      Hiring contractors were not found
+    </div>
+  </div>
+</ng-template>

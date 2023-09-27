@@ -1,0 +1,32 @@
+.button-loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  inset: 0;
+  background-color: rgba(var(--mainGamma), 1);
+  border-radius: var(--radius);
+  z-index: 5;
+}
+
+.button-loader-container > svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: #ffffff;
+}
+
+.button-loader {
+  position: relative;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side,#FFF 94%,#0000) top/3px 3px no-repeat,
+    conic-gradient(#0000 30%,#FFF);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 3px),#000 0);
+  animation:s3 1s infinite linear;
+}
+
+@keyframes s3{
+  100%{transform: rotate(1turn)}
+}

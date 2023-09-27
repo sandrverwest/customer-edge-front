@@ -1,0 +1,2 @@
+<app-producer *ngFor="let producer of producers; let i = index" [producer]="producer" [arrayIndex]="i" (deleteProducerEmitter)="deleteProducer($event)"></app-producer>
+<app-new-producer (newProducerEmmiter)="pushNewProducer($event)"></app-new-producer>

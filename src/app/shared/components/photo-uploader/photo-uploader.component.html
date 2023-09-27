@@ -1,0 +1,42 @@
+<div class="backdrop" (click)="close.emit()"></div>
+<div class="modal">
+  <div class="modal-title">
+    <div class="m-title">
+      <ng-container *ngIf="data.first_name && data.last_name">
+        <b>{{data.first_name + ' ' + data.last_name}}</b> - Profile Picture
+      </ng-container>
+      <ng-container *ngIf="data.name">
+        <b>{{data.name}}</b> - Logo
+      </ng-container>
+    </div>
+    <div class="m-close" (click)="close.emit()">
+      <svg viewBox="0 0 24 24">
+        <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+      </svg>
+    </div>
+  </div>
+  <div class="modal-content scrollbar">
+    <img *ngIf="data.photo" [src]="environment.API_URL + '/' + entityType + '/image/' + data.photo + '?v=' + imageKey">
+    <div
+      class="drop-container" [class.drag-over]="isDragOver"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    >
+      <p>Drag and drop image here</p>
+      <input
+        type="file"
+        (change)="onFileSelected($event)"
+        accept="image/*"
+      />
+    </div>
+    <ng-container *ngIf="data.photo">
+      <div class="flex justify-c marg1x0">
+        OR
+      </div>
+      <div class="flex justify-c">
+        <button class="red-b" (click)="deletePhoto()">Delete Image</button>
+      </div>
+    </ng-container>
+  </div>
+</div>

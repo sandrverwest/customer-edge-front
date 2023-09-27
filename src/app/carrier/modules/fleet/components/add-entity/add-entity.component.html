@@ -1,0 +1,17 @@
+<div class="sticky-container flex justify-c" style="overflow: hidden;">
+  <form [formGroup]="form" class="add-entity-form" (submit)="addNewEntity()" autocomplete="off">
+    <label for="first_name">First Name:</label><input id="first_name" formControlName="first_name">
+    <label for="last_name">Last Name:</label><input id="last_name" formControlName="last_name">
+    <label for="business_name">DBA:</label><input id="business_name" formControlName="business_name">
+    <label for="ssn_ein">SSN or EIN:</label><input id="ssn_ein" formControlName="ssn_ein">
+<!--    <label for="phone">Phone:</label><input id="phone">-->
+<!--    <label for="email">Email:</label><input id="email">-->
+<!--    <label for="address_line">Address:</label><input id="address_line">-->
+<!--    <label for="city">City:</label><input id="city">-->
+<!--    <label for="state">State:</label><input id="state">-->
+<!--    <label for="zip">ZIP:</label><input id="zip">-->
+    <div class="txt-center" style="grid-column: 1/5;">
+      <button type="submit" class="blue-b" [disabled]="form.invalid">Add New Entity</button>
+    </div>
+  </form>
+</div>

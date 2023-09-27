@@ -1,0 +1,93 @@
+form {
+  width: 100%;
+}
+
+/*input, select, textarea {*/
+/*  font: inherit;*/
+/*  padding: .2rem .4rem;*/
+/*  border-radius: var(--radius);*/
+/*  border: 1px solid rgba(0, 0, 0, 0.1);*/
+/*  background-color: rgbA(var(--link-clr), .05);*/
+/*  outline: none;*/
+/*  transition: all .5s;*/
+/*}*/
+
+/*input:focus, select:focus, textarea:focus {*/
+/*  border: 1px solid rgb(var(--link-clr));*/
+/*  background-color: #fff;*/
+/*}*/
+
+input:not([id=owner], [id=truck_value], [id=trailer_value]) {
+  text-align: center;
+}
+.owner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 1rem 0;
+}
+
+.owner > div {display: flex; align-items: center; gap: 1rem}
+.owner > div > a {font-size: .8rem;cursor: pointer;}
+.owner > div> a:hover {text-decoration: underline;}
+
+.unit-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  margin: 1rem 0;
+  gap: 0 1rem;
+}
+
+.data-entry {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+
+  gap: .5rem;
+
+  background-color: rgba(var(--mainGamma), 0.1);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.unit-vin {
+  grid-column: 2/5;
+}
+
+.activation {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+
+  gap: .5rem;
+
+  background-color: rgba(var(--green), 0.1);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.removal {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+
+  gap: .5rem;
+
+  background-color: rgba(var(--orange), 0.1);
+  border-radius: var(--radius);
+  padding: 1rem;
+}
+
+.data-clear {visibility: visible;text-align: center;}
+.truck:hover .data-clear {visibility: hidden;}
+
+.data-clear a {font-size: .8rem;cursor: pointer; color: rgb(var(--link-clr))}
+.data-clear a:hover {text-decoration: underline;}
+
+.activation-clear {text-align: center;}
+.activation-clear a {font-size: .8rem;cursor: pointer; color: rgb(var(--green))}
+.activation-clear a:hover {text-decoration: underline;}
+
+.removal-clear {text-align: center;}
+.removal-clear a {font-size: .8rem;cursor: pointer; color: rgb(var(--orange))}
+.removal-clear a:hover {text-decoration: underline;}

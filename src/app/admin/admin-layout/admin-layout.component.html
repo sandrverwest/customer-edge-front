@@ -1,0 +1,34 @@
+<app-header></app-header>
+
+<div class="main-layout gap1">
+  <div class="side-container">
+    <div class="aside-block block-shadow">
+      <div class="sub-title">General</div>
+      <div class="sidebar-menu pad1">
+        <a [routerLink]="['general', 'carriers']" routerLinkActive="active">Carriers</a>
+        <a [routerLink]="['general', 'users']" routerLinkActive="active">Users</a>
+      </div>
+        <div class="sub-title">Insurance</div>
+      <div class="sidebar-menu pad1">
+        <a [routerLink]="['insurance', 'levels']" routerLinkActive="active">Levels</a>
+        <a [routerLink]="['insurance', 'producers']" routerLinkActive="active">Producers</a>
+      </div>
+    </div>
+  </div>
+  <div class="block block-shadow" style="width: 80rem">
+    <div class="title font120">
+      <div>
+        Admin Panel
+        <ng-container *ngIf="title$ | async as segmentTitle">
+          <svg viewBox="0 0 24 24" class="caret-right">
+            <path d="M9,17.88V6.71A1,1,0,0,1,10.71,6l5.58,5.59a1,1,0,0,1,0,1.41l-5.58,5.59A1,1,0,0,1,9,17.88Z"/>
+          </svg>
+         {{ segmentTitle }}
+        </ng-container>
+      </div>
+    </div>
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,183 @@
+input, select {width: 50%}
+
+input[name=coi] {width: 35%}
+
+input[name=prodname] {width: 35%}
+
+input[name=agent-name] {
+  width: 25%;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+input[name=agent-email] {
+  width: 35%;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.tooltip-prod {
+  position: relative;
+  //display: inline-block;
+}
+
+.tooltip-prod .tooltiptext {
+  display: block;
+  visibility: hidden;
+  width: 17rem;
+  background-color: rgb(var(--red));
+  color: #fff;
+  padding: .5rem 1rem;
+  border-radius: var(--radius);
+
+  top: -40%;
+  left: 103%;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip-prod .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  right: 100%; /* To the left of the tooltip */
+  margin-top: -.5rem;
+  border-width: .5rem;
+  border-style: solid;
+  border-color: transparent rgb(var(--red)) transparent transparent;
+}
+
+.tooltip-prod .bottom-tooltiptext {
+  display: block;
+  visibility: hidden;
+  width: 9rem;
+  background-color: rgb(var(--red));
+  color: #fff;
+  text-align: center;
+  padding: .5rem 1rem;
+  border-radius: var(--radius);
+
+  top: 150%;
+  left: 15%;
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.tooltip-prod .bottom-tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -.5rem;
+  border-width: .5rem;
+  border-style: solid;
+  border-color: transparent transparent rgb(var(--red)) transparent;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip-prod:hover .tooltiptext, .tooltip-prod:hover .bottom-tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.prod-container {
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+}
+
+.prod-item {
+  position: absolute;
+  align-self: flex-start;
+  font-size: 3rem;
+  //color: rgba(var(--link-clr), 0.2);
+  color: rgba(0,0,0, 0.1);
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.prod-delete {
+  position: absolute;
+  right: 0;
+  margin-right: 1rem;
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity;
+  transition-delay: 1s;
+  transition-duration: 1s;
+}
+
+.remove-agent {
+  position: relative;
+  top: .1rem;
+  left: .4rem;
+  cursor: pointer;
+
+  visibility: hidden;
+  opacity: 0;
+  transition-property: visibility, opacity;
+  //transition-delay: 1s;
+  transition-duration: 1s;
+}
+
+.prod-delete > div {cursor: pointer}
+.prod-delete > div:hover svg, .remove-agent:hover svg  {fill: rgba(var(--link-clr), 0.8);}
+
+.prod-delete svg, .remove-agent svg {
+  fill: rgba(var(--link-clr), 0.5);
+  //width: 2rem;
+  //height: 2rem;
+}
+
+.prod-container:hover .prod-delete, .agent-row:hover .remove-agent{
+  visibility: visible;
+  opacity: 1;
+}
+
+.producer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.new-producer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.producer > div.end, .new-producer > div.end {
+  justify-self: end;
+}
+
+.prod-name {
+  font-weight: 600;
+}
+
+.at-sign {
+  user-select: none;
+  padding: 0.2rem 0.4rem;
+  background-color: rgba(var(--link-clr), .3);
+  color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.at-valid {
+  background-color: rgba(var(--link-clr), .7);
+}
+
+.odd {
+  background-color: #e1e1e1;
+}
+

@@ -1,0 +1,63 @@
+<div class="main-block block-shadow">
+  <div class="flex align-s justify-c pad1 auto-overflow-x">
+
+    <form [formGroup]="form" autocomplete="off">
+      <div class="title-line"><div class="element-title">Owner</div></div>
+      <div class="owner">
+        <div><label for="owner_name">Full Name:</label><input type="text" id="owner_name" formControlName="ownerName" size="30"><a (click)="clearField('ownerName')">clear</a></div>
+        <div><label for="additionalDriver">Additional Driver:</label><select type="text" id="additionalDriver" formControlName="additionalDriver"><option value="Yes">Yes</option><option value="No">No</option></select></div>
+      </div>
+
+      <div class="title-line"><div class="element-title">TRUCK</div></div>
+      <div class="unit-grid" formGroupName="truck">
+        <div class="data-entry">
+          <label for="truck_unit" class="txt-left">UNIT#:</label><input type="text" id="truck_unit" formControlName="unit" size="4"><div></div><div></div>
+          <label for="truck_vin" class="txt-left">VIN#:</label><input class="unit-vin" type="text" id="truck_vin" formControlName="vin" size="17">
+          <label for="truck_year" class="txt-left">YEAR:</label><input type="text" id="truck_year" formControlName="year" size="4">
+          <label for="truck_make" class="txt-center">MAKE:</label><input type="text" id="truck_make" formControlName="make" size="4">
+        </div>
+        <div class="activation">
+          <label for="truck_value" class="txt-left">VALUE:</label><input (blur)="valueToCurrency('truck')" (focus)="valueToNumber('truck')" type="text" id="truck_value" formControlName="value" size="10">
+        </div>
+        <div class="removal">
+          <label for="truck_remove_pd" class="txt-left">Remove PD?:</label><select type="text" id="truck_remove_pd" formControlName="remove_pd"><option value="true">Yes</option><option value="false">No</option></select>
+          <label for="truck_remove_ntl" class="txt-left">Remove NTL?:</label><select type="text" id="truck_remove_ntl" formControlName="remove_ntl"><option value="true">Yes</option><option value="false">No</option></select>
+          <label for="truck_remove_cl" class="txt-left">Remove C/L?:</label><select type="text" id="truck_remove_cl" formControlName="remove_cl"><option value="true">Yes</option><option value="false">No</option></select>
+        </div>
+
+        <div class="data-clear"><a (click)="clearField('truck', ['unit', 'vin', 'year', 'make'])">clear</a></div>
+        <div class="activation-clear"><a (click)="clearField('truck', ['value'])">clear</a></div>
+        <div class="removal-clear"><a (click)="clearField('truck', ['remove_pd', 'remove_ntl', 'remove_cl'])">reset</a></div>
+      </div>
+
+      <div class="title-line"><div class="element-title">TRAILER</div></div>
+      <div class="unit-grid" formGroupName="trailer">
+        <div class="data-entry">
+          <label for="trailer_unit">UNIT#:</label><input type="text" id="trailer_unit" formControlName="unit" size="4"><div></div><div></div>
+          <label for="trailer_vin">VIN#:</label><input class="unit-vin" type="text" id="trailer_vin" formControlName="vin" size="17">
+          <label for="trailer_year">YEAR</label><input type="text" id="trailer_year" formControlName="year" size="4">
+          <label for="trailer_make">MAKE:</label><input type="text" id="trailer_make" formControlName="make" size="4">
+        </div>
+        <div class="activation">
+          <label for="trailer_value" class="txt-left">VALUE:</label><input (blur)="valueToCurrency('trailer')" (focus)="valueToNumber('trailer')" type="text" id="trailer_value" formControlName="value" size="10">
+        </div>
+        <div class="removal">
+          <label for="trailer_remove_pd" class="txt-left">Remove PD?:</label><select type="text" id="trailer_remove_pd" formControlName="remove_pd"><option value="true">Yes</option><option value="false">No</option></select>
+          <label for="trailer_remove_cl" class="txt-left">Remove C/L?:</label><select type="text" id="trailer_remove_cl" formControlName="remove_cl"><option value="true">Yes</option><option value="false">No</option></select>
+        </div>
+
+        <div class="data-clear"><a (click)="clearField('trailer', ['unit', 'vin', 'year', 'make'])">clear</a></div>
+        <div class="activation-clear"><a (click)="clearField('trailer', ['value'])">clear</a></div>
+        <div class="removal-clear"><a (click)="clearField('trailer', ['remove_pd', 'remove_ntl', 'remove_cl'])">reset</a></div>
+      </div>
+    </form>
+
+  </div>
+
+  <div class="sticky-container flex justify-c">
+    <button class="blue-b flex align-c justify-c" (click)="generateForm('appendix')">Appendix</button>
+    <button class="green-b flex align-c justify-c" (click)="generateForm('activation')">Activation</button>
+    <button class="orange-b flex align-c justify-c" (click)="generateForm('removal')">Removal</button>
+  </div>
+
+</div>

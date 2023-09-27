@@ -1,0 +1,15 @@
+.or {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: rgba(0,0,0, .5);
+  border-left: 1px solid rgba(0,0,0, .2);
+  height: 6rem;
+}
+
+.or > span {
+  position: absolute;
+  left: -.8rem;
+  padding: .5rem 0;
+  background: #ffffff;
+}

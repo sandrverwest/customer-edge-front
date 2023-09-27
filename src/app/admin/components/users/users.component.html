@@ -1,0 +1,17 @@
+<nav>
+  <div>
+    <a [routerLink]="['/', 'admin', 'general', 'users']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">All Users</a>
+    <a [routerLink]="['/', 'admin', 'general', 'users']" [queryParams]="{ active: 'true'}" routerLinkActive="active">Active</a>
+    <a [routerLink]="['/', 'admin', 'general', 'users']" [queryParams]="{ active: 'false'}" routerLinkActive="active">Deactivated</a>
+  </div>
+  <div>
+    <input (input)="userSearch($event)" placeholder="Search...">
+  </div>
+</nav>
+<div class="pad1">
+  <app-user *ngFor="let user of users;let index = index; let last = last;" [last]="last" [user]="user" [index]="index" (userDeletionEmitter)="deletionEmitter($event)"></app-user>
+  <ng-container *ngIf="!users?.length">
+    No Users Found
+  </ng-container>
+</div>
+<app-new-user (userEmitter)="pushEmitter($event)"></app-new-user>

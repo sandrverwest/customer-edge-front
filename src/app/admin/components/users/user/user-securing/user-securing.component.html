@@ -1,0 +1,8 @@
+<div class="user-security-block">
+  <form [formGroup]="userSecurityForm" (submit)="saveUserSecurity()" autocomplete="off">
+    <label for="password">Change Password:</label><div><input type="password" id="password" formControlName="password" placeholder="New Password"><span *ngIf="isPasswordUpdated" class="password-updated">updated</span></div>
+    <label for="deactivate">Deactivate Account:</label><div><input id="deactivate" type="checkbox" formControlName="isDeactivated"></div>
+    <button type="submit" class="green-b" style="grid-column: 1/3" [disabled]="this.userSecurityForm.invalid">Save</button>
+    <button type="button" (click)="deleteUser()" class="red-b" style="grid-column: 3/5">Delete User</button>
+  </form>
+</div>

@@ -1,0 +1,6 @@
+<div (dblclick)="editMode()" class="cell flex align-c justify-c" tabindex="1">
+  <ng-container *ngIf="!isEditMode"><div>{{cellData}}</div></ng-container>
+  <ng-container *ngIf="isEditMode">
+    <input type="text" class="txt-center" appInputfocus (blur)="onBlur($event)" [value]="cellData">
+  </ng-container>
+</div>

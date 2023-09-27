@@ -1,0 +1,9 @@
+<app-header></app-header>
+<div class="main-layout">
+  <left-sidebar></left-sidebar>
+  <main>
+    <router-outlet></router-outlet>
+  </main>
+  <carrier-sidebar *ngIf="isCarrierData$ | async as carrier" [carrier]="carrier"></carrier-sidebar>
+</div>
+<app-users-online></app-users-online>
