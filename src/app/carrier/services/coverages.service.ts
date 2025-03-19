@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {delay, Observable} from "rxjs";
-import {Carrier, Coverage, User} from "../../shared/interfaces";
+import {Carrier, Coverages, User} from "../../shared/interfaces";
 import {environment} from "../../../environments/environment";
 
 @Injectable({
@@ -11,23 +11,23 @@ export class CoveragesService {
 
   constructor( private http: HttpClient) { }
 
-  addCoverage(data:Coverage):Observable<Coverage> {
-    return this.http.post<Coverage>(environment.API_URL+ '/coverages', data)
+  addCoverage(data:Coverages):Observable<Coverages> {
+    return this.http.post<Coverages>(environment.API_URL+ '/coverages', data)
   }
 
-  getCoverage(coverageID:string):Observable<Coverage>{
-    return this.http.get<Coverage>(`${environment.API_URL}/coverages/${coverageID}`)
+  getCoverage(coverageID:string):Observable<Coverages>{
+    return this.http.get<Coverages>(`${environment.API_URL}/coverages/${coverageID}`)
   }
 
-  getCarrierCoverages(carrierID:string):Observable<Coverage[]>{
-    return this.http.get<Coverage[]>(`${environment.API_URL}/coverages/carrier/${carrierID}`)
+  getCarrierCoverages(carrierID:string):Observable<Coverages[]>{
+    return this.http.get<Coverages[]>(`${environment.API_URL}/coverages/carrier/${carrierID}`)
   }
 
-  updateSingleCoverage(id:string, data:any):Observable<Coverage> {
-    return this.http.patch<Coverage>(`${environment.API_URL}/coverages/${id}`, data)
+  updateSingleCoverage(id:string, data:any):Observable<Coverages> {
+    return this.http.patch<Coverages>(`${environment.API_URL}/coverages/${id}`, data)
   }
 
   deleteSingleCoverage(id:string) {
-    return this.http.delete<Coverage>(`${environment.API_URL}/coverages/${id}`)
+    return this.http.delete<Coverages>(`${environment.API_URL}/coverages/${id}`)
   }
 }

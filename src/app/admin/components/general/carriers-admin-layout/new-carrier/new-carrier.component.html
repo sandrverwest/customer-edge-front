@@ -1,17 +1,17 @@
-<div class="new-user-block sticky-container">
+<div class="sticky-container">
   <form [formGroup]="form" (ngSubmit)="submit()" autocomplete="off">
     <div *ngIf="isExists" class="flex justify-c">
       <div>MC# <b>{{isExists.mc}}</b> or USDOT# <b>{{isExists.usdot}}</b>  already taken by <b>{{isExists.name}}</b>. Please enter another MC# or USDOT#.</div>
       <br><br>
     </div>
 
-    <div class="inputs-block">
+    <div class="flex justify-c gap1">
       <div><input type="text" placeholder="Carrier Name" size="25" formControlName="name"><div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="validation">required</div></div>
       <div><input type="text" placeholder="MC#" size="9" formControlName="mc"><div *ngIf="form.get('mc')?.invalid && form.get('mc')?.touched" class="validation">numbers only</div></div>
       <div><input type="text" placeholder="USDOT#" size="9" formControlName="usdot"><div *ngIf="form.get('usdot')?.invalid && form.get('usdot')?.touched" class="validation">numbers only</div></div>
     </div>
 
-    <div class="btn">
+    <div class="flex justify-c pad1">
       <button type="submit" class="blue-button" [disabled]="form.invalid">Add <b>New</b> Carrier</button>
     </div>
   </form>

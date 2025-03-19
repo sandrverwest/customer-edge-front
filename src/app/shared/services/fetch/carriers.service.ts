@@ -24,7 +24,7 @@ export class CarriersService {
     return this.http.get<Carrier[]>(`${environment.API_URL}/carriers/`)
   }
 
-  updateCarrier(id:string, data:any):Observable<Carrier> {
+  updateCarrier(id:string, data:Carrier):Observable<Carrier> {
     return this.http.patch<Carrier>(`${environment.API_URL}/carriers/${id}`, data)
   }
 

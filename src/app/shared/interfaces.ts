@@ -35,8 +35,7 @@ export interface ChangesItem {
 
 export interface Adds extends ChangesItem {
   value: string | null
-  addressLine1: string | null
-  addressLine2: string | null
+  addressLine: string | null
   lossPayee: string | null
 }
 
@@ -66,13 +65,20 @@ export interface Producer {
   agents: Agents[]
 }
 
-export interface Coverage extends Producer{
+export interface Coverage {
+  coverageLineName: string
+  coverageLineCarrier: string
+  coverageLineExpirationDate: Date
+  coverageLinePolicyNumber: string
+}
+export interface Coverages extends Producer{
   _id: string
-  coverageName: string
   producerID: string
   carrierID: string
+  coverageLines: [Coverage]
+  isPrimary: boolean
+  primaryPolicyType: String
   notes: string
-  expiration: Date
 }
 
 export interface Address {
@@ -85,7 +91,7 @@ export interface Address {
 export interface Carrier {
   isExists?: boolean
   _id: string | null
-  name: string | null
+  name: string
   usdot: number | null
   mc: number | null
   level?: string
@@ -138,20 +144,23 @@ export interface InsurancePremiums{
 }
 
 export interface Equipment {
-  contractor?: string
+  _id: string
+  ssn_ein: string
   equipmentType: string
-  ownership: string
+  ownershipType: string
   unitNumber: string
   vin: string
   year: number
   make: string
   value: number
-  cl: boolean
-  pd: boolean
-  ntl: boolean
+  cl: string
+  pd: string
+  ntl: string
+  status: string
 }
 
 export interface Contractor {
+  _id: string
   cid: string
   businessName?: string
   firstName: string

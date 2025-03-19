@@ -4,18 +4,18 @@
 <!--    <a [routerLink]="['active']" routerLinkActive="active">Active</a>-->
 <!--    <a [routerLink]="['leaving']" routerLinkActive="active">Terminated</a>-->
   </div>
-  <div>
-    <input (input)="carrierFilter($event)" placeholder="Search...">
-  </div>
+  <input (input)="carrierFilter($event)" class="filter" type="search" placeholder="Search...">
 </div>
 <div class="auto-overflow-x">
   <table>
     <tr class="table-title">
-      <th>Level</th>
+      <th>Logo</th>
       <th>Name</th>
       <th>MC#</th>
       <th>USDOT#</th>
-      <th>Logo</th>
+      <th>Level</th>
+      <th>Phone</th>
+      <th>Fax</th>
       <th>Street</th>
       <th>City</th>
       <th>State</th>
@@ -25,13 +25,15 @@
       <th>Action</th>
     </tr>
     <tr *ngFor="let carrier of carriers; let odd = odd" [class.odd]="odd">
-      <td class="level">{{carrier.level}}</td>
+      <td><img *ngIf="carrier.photo" [src]="environment.API_URL + '/carriers/image/' + carrier.photo" height="24"></td>
       <td class="txt-left"><a [routerLink]="['/', 'carrier', carrier._id]">{{carrier.name}}</a></td>
       <td>{{carrier.mc}}</td>
       <td>{{carrier.usdot}}</td>
-      <td><img *ngIf="carrier.photo" [src]="environment.API_URL + '/carriers/image/' + carrier.photo" height="24"></td>
-      <td>{{carrier.address?.addressLine}}</td>
-      <td>{{carrier.address?.city}}</td>
+      <td class="level">{{carrier.level}}</td>
+      <td >{{carrier.phone}}</td>
+      <td >{{carrier.fax}}</td>
+      <td class="txt-left">{{carrier.address?.addressLine}}</td>
+      <td >{{carrier.address?.city}}</td>
       <td>{{carrier.address?.state}}</td>
       <td>{{carrier.address?.zip}}</td>
       <td class="types txt-left"><a *ngFor="let power of carrier.divisions; let last = last">{{power}}<ng-container *ngIf="!last">, </ng-container></a></td>

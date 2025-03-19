@@ -17,8 +17,7 @@ adds:Adds[] = [
       value: '168000',
       ntl: true,
       leasedTo: 'Carolina Logistic Inc',
-      addressLine1: '1920 Mountain Street',
-      addressLine2: 'Graham, TX 76480',
+      addressLine: '1920 Mountain Street, Graham, TX 76480',
       lossPayee: 'Ukrainian Credit Union, PO BOX 58621, Huston, TX 47852',
       notes: 'Add to PD/NTL.',
       requestedBy: 'Devin Jenkins'
@@ -33,8 +32,7 @@ adds:Adds[] = [
       value: null,
       ntl: true,
       leasedTo: 'Carolina Transportation Inc',
-      addressLine1: '85 Creek Street',
-      addressLine2: 'Candler, NC 87459',
+      addressLine: '85 Creek Street, Candler, NC 87459',
       lossPayee: null,
       notes: 'Add to PD/NTL.',
       requestedBy: 'Christina Tryhub'
@@ -49,8 +47,7 @@ adds:Adds[] = [
       value: '14000',
       ntl: false,
       leasedTo: 'Superior Transportation Inc',
-      addressLine1: '896 Aaron Ln',
-      addressLine2: 'Bridgeport, WV 74589',
+      addressLine: '896 Aaron Ln, Bridgeport, WV 74589',
       lossPayee: null,
       notes: 'Add to PD',
       requestedBy: 'Christina Tryhub'

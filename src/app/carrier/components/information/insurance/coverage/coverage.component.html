@@ -2,9 +2,23 @@
 
 <div class="insurance-info">
     <div class="title-line">
-      <div class="element-title pointer" (click)="isCollapsed = !isCollapsed">{{coverage.coverageName}}</div>
+      <div class="element-title pointer gap05" (click)="isCollapsed = !isCollapsed">
+        <ng-container *ngFor="let coverageLines of coverages.coverageLines; let last = last">{{coverageLines.coverageLineName}}{{!last ? '/' : ''}}</ng-container>
+        <span class="flex align-c primaryCoverage" appTooltip="Primary Coverage" *ngIf="coverages.isPrimary">
+          <svg viewBox="0 0 24 24" width="1rem" height="1rem">
+            <path d="M18.581,2.14,12.316.051a1,1,0,0,0-.632,0L5.419,2.14A4.993,4.993,0,0,0,2,6.883V12c0,7.563,9.2,11.74,9.594,11.914a1,1,0,0,0,.812,0C12.8,23.74,22,19.563,22,12V6.883A4.993,4.993,0,0,0,18.581,2.14ZM16.718,9.717l-4.272,4.272a1.873,1.873,0,0,1-1.335.553h-.033a1.872,1.872,0,0,1-1.345-.6l-2.306-2.4A1,1,0,1,1,8.868,10.16L11.112,12.5,15.3,8.3a1,1,0,0,1,1.414,1.414Z"/>
+          </svg>
+        </span>
+        <span [class.any-auto]="coverages.primaryPolicyType == 'Any Auto'" [class.scheduled]="coverages.primaryPolicyType == 'Scheduled'" *ngIf="coverages.isPrimary && coverages.primaryPolicyType"  appTooltip="Policy Type">
+          {{coverages.primaryPolicyType}}
+        </span>
+      </div>
       <div class="flex gap1 align-c position">
-        <div class="expiration" appTooltip="Policy Expiration Date">{{coverage.expiration | date: 'MM/dd/yyyy'}}</div>
+        <div class="expiration" appTooltip="Policy Expiration Date">
+          <ng-container>
+            {{ this.getFormattedExpirationDates(coverages.coverageLines) }}
+          </ng-container>
+        </div>
         <div *ngIf="true" (click)="editCoverage()" class="edit-menu" appTooltip="Coverage Edit">
           <svg viewBox="0 0 512 512">
             <path d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/>
@@ -19,18 +33,18 @@
     </div>
 
     <ng-container *ngIf="!isCollapsed">
-      <div class="r">Producer:</div><div class="l">{{ coverage.name }}</div>
-      <ng-container *ngIf="coverage.coiRequests"><div class="r">Certificates:</div><div class="l email"><a href="mailto:{{coverage.coiRequests}}">{{coverage.coiRequests}}</a></div></ng-container>
-      <ng-container *ngIf="coverage.agents.length">
+      <div class="r">Producer:</div><div class="l">{{ coverages.name }}</div>
+      <ng-container *ngIf="coverages.coiRequests"><div class="r">Certificates:</div><div class="l email"><a href="mailto:{{coverages.coiRequests}}">{{coverages.coiRequests}}</a></div></ng-container>
+      <ng-container *ngIf="coverages.agents.length">
         <div class="r">Agents:</div>
         <div class="l">
-          <div *ngFor="let agent of coverage.agents" class="list">
+          <div *ngFor="let agent of coverages.agents" class="list">
             <div *ngIf="agent.name" class="name">{{agent.name}}</div>
             <div *ngIf="agent.email" class="email"><a href="mailto:{{agent.email}}">{{agent.email}}</a></div>
           </div>
         </div>
-      <ng-container *ngIf="coverage.notes">
-          <div class="r">Notes:</div><div class="l notes">{{ coverage.notes }}</div>
+      <ng-container *ngIf="coverages.notes">
+          <div class="r">Notes:</div><div class="l notes">{{ coverages.notes }}</div>
       </ng-container>
       </ng-container>
     </ng-container>

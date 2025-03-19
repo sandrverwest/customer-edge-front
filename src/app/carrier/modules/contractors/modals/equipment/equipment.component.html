@@ -1,0 +1,122 @@
+<div class="backdrop" (click)="close.emit()"></div>
+<div class="modal">
+  <div class="modal-title">
+    <div class="m-title">
+      {{contractor.businessName ? contractor.businessName : contractor.firstName + ' ' + contractor.lastName}}
+    </div>
+    <div class="m-close" (click)="close.emit()">
+      <svg viewBox="0 0 24 24">
+        <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+      </svg>
+    </div>
+  </div>
+  <div class="flex align-c justify-s gap1 pad1 contractor-details">
+    <div class="flex align-c">
+      <svg viewBox="0 0 448 512">
+        <path d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512H418.3c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304H178.3z"/>
+      </svg>
+    </div>
+    <div>{{contractor.firstName + ' ' + contractor.lastName}}</div>
+    <div class="flex align-c">
+      <svg viewBox="0 0 512 512">
+        <path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
+      </svg>
+    </div>
+    <div><ng-container *ngIf="contractor.phone; else notAvailable">{{contractor.phone}}</ng-container></div>
+    <div class="flex align-c">
+      <svg viewBox="0 0 384 512">
+        <path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/>
+      </svg>
+    </div>
+    <div><ng-container *ngIf="contractor.address && contractor.city && contractor.zip; else notAvailable">{{contractor.address + ', ' + contractor.city + ', ' + contractor.state + ', ' + contractor.zip}}</ng-container></div>
+  </div>
+  <div class="flex justify-b align-c pad05 toolbar">
+    <div class="pad0x1">
+      <form [formGroup]="filter">Filter:
+        <select formControlName="status">
+          <option value="all" selected>All</option>
+          <option value="hiring">Hiring</option>
+          <option value="active">Active</option>
+          <option value="terminated">Terminated</option>
+        </select>
+      </form>
+    </div>
+    <div style="height: 2rem; width: 15rem;position: relative;">
+      <input class="filter" type="search" placeholder="Search...">
+    </div>
+  </div>
+  <div class="modal-content scrollbar radius0" style="padding: 0">
+    <table *ngIf="filteredEquipment.length; else noFleet">
+        <tr>
+            <th appTooltip="Equipment Type">EQ Type</th>
+            <th appTooltip="Ownership Type">O Type</th>
+            <th><span class="pointer" (click)="sortByUnit()">Unit# ⇅</span></th>
+            <th><span class="pointer" (click)="sortByVin()">VIN# ⇅</span></th>
+            <th><span class="pointer" (click)="sortByYear()">Year ⇅</span></th>
+            <th><span class="pointer" (click)="sortByMake()">Make ⇅</span></th>
+            <th><span class="pointer" (click)="sortByValue()">Value ⇅</span></th>
+            <th appTooltip="Cargo & Liability">C/L</th>
+            <th appTooltip="Physical Damage">PD</th>
+            <th appTooltip="Non Trucking Liability">NTL</th>
+            <th>Drivers</th>
+            <th>Passengers</th>
+            <th><span class="pointer" (click)="sortByStatus()">Status ⇅</span></th>
+            <th>Action</th>
+        </tr>
+        <tr tabindex="1" (focus)="createForm(index)" (blur)="formDestroy(index)" *ngFor="let unit of filteredEquipment;let index = index, let odd = odd, let last = last" [class.odd]="odd" [class.last]="last">
+            <td [class.truck]="unit.equipmentType === 'TRUCK'" [class.trailer]="unit.equipmentType === 'TRAILER'">{{unit.equipmentType}}</td>
+            <td [class.own]="unit.ownershipType === 'OWN'" [class.lp]="unit.ownershipType === 'LP'" [class.rental]="unit.ownershipType === 'Rental'">{{unit.ownershipType}}</td>
+            <td>{{unit.unitNumber}}</td>
+            <td>{{unit.vin}}</td>
+            <td>{{unit.year}}</td>
+            <td>{{unit.make}}</td>
+            <td class="value">{{unit.value | currency}}</td>
+            <td [class.activated]="unit.cl === 'active'" [class.deactivated]="unit.cl === 'inactive'">{{unit.cl | titlecase}}</td>
+            <td [class.activated]="unit.pd === 'active'" [class.deactivated]="unit.pd === 'inactive'">{{unit.pd | titlecase}}</td>
+            <td [class.activated]="unit.ntl === 'active'" [class.deactivated]="unit.ntl === 'inactive' && unit.equipmentType === 'TRUCK'" [class.n-a]="unit.equipmentType === 'TRAILER'">{{unit.equipmentType === 'TRUCK' ? (unit.ntl | titlecase)  : 'N/A'}}</td>
+            <td>-</td>
+            <td>-</td>
+            <td><span [class.hiring]="unit.status === 'hiring'" [class.active]="unit.status === 'active'" [class.terminated]="unit.status === 'terminated'">{{unit.status}}</span></td>
+            <td class="action-cell">
+              <span appTooltip="Changes Logs">C.Logs</span>
+              <span>x</span>
+            </td>
+        </tr>
+    </table>
+
+  </div>
+  <div>
+    <form class="sticky-container flex justify-c gap1" [formGroup]="form" autocomplete="off">
+      <select formControlName="equipmentType">
+        <option>TRUCK</option>
+        <option>TRAILER</option>
+      </select>
+      <select formControlName="ownershipType">
+        <option>OWN</option>
+        <option>LP</option>
+        <option>Rental</option>
+      </select>
+      <input formControlName="unitNumber" placeholder="UNIT#" size="4">
+      <input formControlName="vin" placeholder="VIN#" size="17">
+      <input formControlName="year" placeholder="YEAR" size="4">
+      <input formControlName="make" placeholder="MAKE" size="4">
+      <input formControlName="value" placeholder="VALUE" size="10">
+      <div>
+        <button class="blue-b" (click)="addEquipment()" [disabled]="this.form.invalid">Add Unit<button-loader></button-loader></button>
+        <button class="gray-b" (click)="this.form.reset()">Clear</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<ng-template #notAvailable>
+  <div class="not-available"><span>N/A</span></div>
+</ng-template>
+
+<ng-template #noFleet>
+  <div class="pad1">
+    <div class="alert-message txt-center">
+      Equipment was not found
+    </div>
+  </div>
+</ng-template>

@@ -1,4 +1,4 @@
-<div class="main-page">
+<div class="main-page flex justify-s gap1">
 
   <div class="main-container">
     <div class="main-navigator">
@@ -13,9 +13,11 @@
         <!--        </div>-->
       </div>
 
-      <nav><a [routerLink]="['/', 'changeslist']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Today's</a><a [routerLink]="['yesterday']" routerLinkActive="active">Yesterday's</a></nav>
+<!--      <nav><a [routerLink]="['/', 'changeslist']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Today's</a><a [routerLink]="['yesterday']" routerLinkActive="active">Yesterday's</a></nav>-->
     </div>
     <router-outlet></router-outlet>
   </div>
+
+  <app-changes-sidebar></app-changes-sidebar>
 
 </div>

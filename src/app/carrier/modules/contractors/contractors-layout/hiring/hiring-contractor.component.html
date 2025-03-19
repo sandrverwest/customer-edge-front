@@ -1,5 +1,8 @@
+<ng-template appModal></ng-template>
+
 <table *ngIf="contractors.length; else noFleet">
   <tr>
+    <th class="title-index">#</th>
     <th>Contractor</th>
     <th>SSN/EIN</th>
     <th>Representative</th>
@@ -11,19 +14,26 @@
     <th>ZIP</th>
     <th>Action</th>
   </tr>
-  <tr *ngFor="let contractor of contractors; let odd = odd" [class.odd]="odd">
-    <td>{{contractor.businessName ? contractor.businessName : contractor.firstName + ' ' + contractor.lastName}}</td>
+  <tr tabindex="1" *ngFor="let contractor of contractors; let odd = odd, let index = index" [class.odd]="odd">
+    <td class="row-index">{{index + 1 }}</td>
+    <td style="cursor: pointer;"  (click)="openEquipmentList(contractor)">{{contractor.businessName ? contractor.businessName : contractor.firstName + ' ' + contractor.lastName}}</td>
     <td>{{contractor.ssn_ein}}</td>
     <td>{{contractor.firstName}} {{contractor.lastName}}</td>
-    <td>{{contractor.phone}}</td>
-    <td>{{contractor.email}}</td>
-    <td>{{contractor.address}}</td>
-    <td>{{contractor.city}}</td>
-    <td>{{contractor.state}}</td>
-    <td>{{contractor.zip}}</td>
-    <td>***</td>
+    <td><ng-container *ngIf="contractor.phone; else notAvailable">{{contractor.phone}}</ng-container></td>
+    <td><ng-container *ngIf="contractor.email; else notAvailable">{{contractor.email}}</ng-container></td>
+    <td><ng-container *ngIf="contractor.address; else notAvailable">{{contractor.address}}</ng-container></td>
+    <td><ng-container *ngIf="contractor.city; else notAvailable">{{contractor.city}}</ng-container></td>
+    <td><ng-container *ngIf="contractor.state; else notAvailable">{{contractor.state}}</ng-container></td>
+    <td><ng-container *ngIf="contractor.zip; else notAvailable">{{contractor.zip}}</ng-container></td>
+    <td class="action-cell">
+      <equipment-dropdown [contractorId]="contractor._id"></equipment-dropdown>
+    </td>
   </tr>
 </table>
+
+<ng-template #notAvailable>
+  <div class="not-available"><span>N/A</span></div>
+</ng-template>
 
 <ng-template #noFleet>
   <div class="pad1">

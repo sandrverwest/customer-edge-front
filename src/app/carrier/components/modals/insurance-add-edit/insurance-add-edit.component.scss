@@ -8,3 +8,8 @@ label {text-align: right;}
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: var(--radius);
 }
+
+.coverageLine:hover .delete-cross-big{
+  visibility: visible;
+  opacity: 1;
+}

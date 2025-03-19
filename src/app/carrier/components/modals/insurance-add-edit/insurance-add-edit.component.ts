@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Carrier, Coverage, Producer} from "../../../../shared/interfaces";
+import {Carrier, Coverages, Producer} from "../../../../shared/interfaces";
 import {FormArray, FormControl, FormGroup, Validators} from "@angular/forms";
 import {SaverService} from "../../../../shared/services/saver.service";
 import {LevelsService} from "../../../../shared/services/fetch/levels.service";
@@ -19,14 +19,23 @@ import {DatePipe} from "@angular/common";
 })
 export class InsuranceAddEditComponent implements OnInit{
   @Output() close = new EventEmitter<void>()
-  @Output() coverageEmitter:EventEmitter<Coverage> = new EventEmitter<Coverage>
+  @Output() coverageEmitter:EventEmitter<Coverages> = new EventEmitter<Coverages>
   @Output() newCoverageSuccessEmitter:EventEmitter<string> = new EventEmitter<string>
   carrierID: string
-  coverage: Coverage
+  coverages: Coverages
   producers: Producer[] = []
 
 
-  form: FormGroup
+  coveragesForm: FormGroup
+  coverageOptions = [
+    'General Liability/Auto Liability/Cargo',
+    'General Liability/Auto Liability',
+    'General Liability',
+    'General Liability/Cargo',
+    'Auto Liability/Cargo',
+    'Auto Liability',
+    'Cargo'
+  ]
 
   private _producer$: Subject<Producer | null> = new Subject<Producer | null>()
   producer$: Observable<Producer | null> = this._producer$.asObservable()
@@ -43,8 +52,8 @@ export class InsuranceAddEditComponent implements OnInit{
     this.producersService.getProducers().subscribe({
       next: (result) => {
         this.producers = result
-        if(this.coverage?.producerID) {
-          this.onInitProducer(this.coverage.producerID)
+        if(this.coverages?.producerID) {
+          this.onInitProducer(this.coverages.producerID)
         }
       },
       error: (error) => {
@@ -56,21 +65,41 @@ export class InsuranceAddEditComponent implements OnInit{
       this.carrierID = params.id
     })
 
-    this.form = new FormGroup({
-      coverageName: new FormControl(this.coverage?.coverageName ? this.coverage.coverageName : null, Validators.required),
-      producerID: new FormControl(this.coverage?.producerID ? this.coverage.producerID : null, Validators.required),
+    this.coveragesForm = new FormGroup({
+      producerID: new FormControl(this.coverages?.producerID ? this.coverages.producerID : null, Validators.required),
       carrierID: new FormControl(this.carrierID, Validators.required),
-      notes: new FormControl(this.coverage?.notes ? this.coverage.notes : null),
-      expiration: new FormControl(this.coverage?.expiration ? this.datePipe.transform(this.coverage.expiration, 'MM/dd/yyyy') : null, [Validators.required, Validators.pattern(/^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/\d{4}$/)])
+      // coverageName: new FormControl(this.coverages?.coverageName ? this.coverages.coverageName : null, Validators.required),
+      // insuranceCarrierName: new FormControl(this.coverages?.insuranceCarrierName ? this.coverages.insuranceCarrierName : null, Validators.required),
+      // expiration: new FormControl(this.coverages?.expiration ? this.datePipe.transform(this.coverages.expiration, 'MM/dd/yyyy') : null, [Validators.required, Validators.pattern(/^((0?[1-9]|1[0-2])[\/.](0?[1-9]|[12]\d|3[01])[\/.](\d{2}|\d{4}))$/)]),
+      coverageLines: new FormArray([]),
+      notes: new FormControl(this.coverages?.notes ? this.coverages.notes : null),
+      isPrimary: new FormControl(this.coverages?.isPrimary ? this.coverages.isPrimary : false),
+      primaryPolicyType: new FormControl(this.coverages?.primaryPolicyType ? this.coverages.primaryPolicyType : null)
     })
+
+    this.loadCoverageLines()
+
+    this.coveragesForm.get('isPrimary')?.valueChanges.subscribe(isPrimary  => {
+      const primaryPolicyTypeControl = this.coveragesForm.get('primaryPolicyType');
+
+      if (isPrimary) {
+        primaryPolicyTypeControl?.setValidators(Validators.required);
+      } else {
+        primaryPolicyTypeControl?.clearValidators();
+        primaryPolicyTypeControl?.setValue(null); // Optionally reset value when unchecked
+      }
+
+      primaryPolicyTypeControl?.updateValueAndValidity();
+    });
   }
 
   addCoverage() {
-    if (this.form.valid) {
+    if (this.coveragesForm.valid) {
+      console.log(this.coveragesForm.value)
       this.successErrorsService.processing(true)
-      this.coveragesService.addCoverage(this.form.value).subscribe({
+      this.coveragesService.addCoverage(this.coveragesForm.value).subscribe({
         next: (result) => {
-          this.form.reset()
+          this.coveragesForm.reset()
           this.newCoverageSuccessEmitter.emit(this.carrierID)
           this.successErrorsService.processing(false)
           this.successErrorsService.setSuccess()
@@ -84,9 +113,9 @@ export class InsuranceAddEditComponent implements OnInit{
   }
 
   saveCoverage() {
-    if (this.form.valid) {
+    if (this.coveragesForm.valid) {
       this.successErrorsService.processing(true)
-      this.coveragesService.updateSingleCoverage(this.coverage._id, this.form.value).subscribe({
+      this.coveragesService.updateSingleCoverage(this.coverages._id, this.coveragesForm.value).subscribe({
         next: (result) => {
           const coverage = {...result, ...this.producers.find((element:Producer) => element._id === result.producerID)}
           this.coverageEmitter.emit(coverage)
@@ -101,6 +130,37 @@ export class InsuranceAddEditComponent implements OnInit{
     }
   }
 
+
+  get coverageLines():FormArray {
+    return this.coveragesForm.get('coverageLines') as FormArray;
+  }
+
+  private loadCoverageLines() {
+    if(this.coverages) {
+      this.coverages.coverageLines.forEach( element => {
+        const coverageLine = new FormGroup({
+          coverageLineName: new FormControl(element.coverageLineName, Validators.required),
+          coverageLineCarrier: new FormControl(element.coverageLineCarrier, [Validators.required]),
+          coverageLinePolicyNumber: new FormControl(element.coverageLinePolicyNumber),
+          coverageLineExpirationDate: new FormControl(element.coverageLineExpirationDate ? this.datePipe.transform(element.coverageLineExpirationDate, 'MM/dd/yyyy') : null, [Validators.required, Validators.pattern(/^((0?[1-9]|1[0-2])[\/.](0?[1-9]|[12]\d|3[01])[\/.](\d{2}|\d{4}))$/)]),
+        });
+        this.coverageLines.push(coverageLine)
+      })
+    }
+  }
+  anotherCoverageLine() {
+    const coverage = new FormGroup({
+      coverageLineName: new FormControl(null, Validators.required),
+      coverageLineCarrier: new FormControl(null, [Validators.required]),
+      coverageLinePolicyNumber: new FormControl(null),
+      coverageLineExpirationDate: new FormControl(null, [Validators.required, Validators.pattern(/^((0?[1-9]|1[0-2])[\/.](0?[1-9]|[12]\d|3[01])[\/.](\d{2}|\d{4}))$/)])
+    })
+    this.coverageLines.push(coverage)
+  }
+
+  removeCoverageLine(agentIndex:number) {
+    this.coverageLines.removeAt(agentIndex)
+  }
 
   loadProducer(event:Event) {
     const producerID:string = ((event.target as HTMLInputElement).value)

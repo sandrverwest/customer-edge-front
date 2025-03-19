@@ -2,6 +2,7 @@
   outline-style: solid;
   outline-width: 0.15rem;
   outline-color: rgba(var(--mainGamma), 1);
+  outline-offset: -0.15rem;
 }
 
 [contenteditable=true]:focus {
@@ -100,10 +101,28 @@ button[disabled] svg {
 table {
   border: none;
   border-spacing: 0;
+
+  table-layout: auto; /* Allows the table to shrink to its smallest possible size */
+  width: auto; /* Let the table shrink to fit content */
+  max-width: 100%; /* Prevents it from overflowing */
 }
 
 tr, td {
   padding: 0;
+}
+
+td {
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.item th {
+  background-color: #eeeeee;
+  padding: .2rem .5rem;
+  /*font-size: .8rem;*/
+  color: #999999;
+  /*border-top: 1px solid #ccc;*/
+  /*border-bottom: 1px solid #ccc;*/
 }
 
 .item td:not(.address, .losspayee, .notes) {
@@ -115,28 +134,28 @@ tr, td {
 }
 
 .item td {
-  border-left: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+  /*border-left: 1px solid #ccc;*/
+  /*border-bottom: 1px solid #ccc;*/
 }
 .leased-to, .requested-by, .handler {
-  border-right: 1px solid #ccc;
+  /*border-right: 1px solid #ccc;*/
 }
 
-
-.item th {
-  background-color: #eeeeee;
-  padding: .2rem .5rem;
-  font-size: .8rem;
-  color: #666666;
-  border-top: 1px solid #ccc;
-  border-bottom: 1px solid #ccc;
+.handler {
+  border-left: 1px solid #eeeeee;
+  border-right: 1px solid #eeeeee;
+  border-bottom: 1px solid #eeeeee;
 }
 
 .leftb {
-  border-left: 1px solid #ccc;
+  /*border-left: 1px solid #ccc;*/
 }
 .rightb {
-  border-right: 1px solid #ccc;
+  border-right: 1px solid #eeeeee;
+}
+
+.bottomb {
+  border-bottom: 1px solid #eeeeee;
 }
 
 .cell-bg {
@@ -157,11 +176,14 @@ tr, td {
 .leased-to {min-width: 15rem; max-width: 15rem;color: #666666; background-color: #ADCD9E;font-weight: 600;}
 .unit, .make {min-width: 5rem; max-width: 5rem;}
 .type, .year, .ntl {min-width: 4rem; max-width: 42rem;}
-.value {min-width: 6rem; max-width: 6rem;}
-.asd {min-width: 4rem; max-width: 4rem;}
-.address {min-width: 11rem; max-width: 11rem;}
+.value {min-width: 6rem; max-width: 6rem;border-right: 1px solid #dddddd;}
+.address {min-width: 11rem; max-width: 11rem;text-align: left;border-top: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;}
+.losspayee {text-align: left;border-top: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee;}
+.losspayeeName {border-top: 1px solid #e1e1e1;border-bottom: 1px solid #e1e1e1;}
+.notes {text-align: left;border-bottom: 1px solid #eeeeee;}
 
-.type {font-size: .8rem; font-weight: bold;color: #666666; background-color: #eeeeee}
+
+.type {font-size: .8rem; font-weight: bold;color: #666666; background-color: #eeeeee;}
 
 .primary-row td:not(.cell-item) {
   padding: 0;
@@ -170,6 +192,15 @@ tr, td {
 .secondary-row td {
   font-size: .8rem;
   padding: .2rem .5rem;
+}
+
+.btl {
+  border-top-left-radius: 0.5rem;
+: 0.5rem;
+}
+
+.btr {
+  border-top-right-radius: 0.5rem;
 }
 
 .bbr {
@@ -201,10 +232,6 @@ tr, td {
 .hover-item:hover .item-control{
   visibility: visible;
   opacity:1;
-}
-
-.list {
-  position: relative;
 }
 
 .remove-item {
@@ -259,4 +286,39 @@ tr, td {
 
 .copy-item:hover svg {
   fill: rgba(var(--green), .8);
+}
+
+
+.dropdown {
+  position: absolute;
+  top: 3rem;
+  background: white;
+  border: 1px solid #cccccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  width: 100%;
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+  height: 300px;
+
+}
+
+.dropdown-item {
+  padding: .5rem 1rem;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background: #f0f0f0;
+}
+
+.leased-to-filter {
+  padding: .5rem;
+  border-bottom: 1px solid #cccccc;
+}
+
+.leased-to-filter input {
+  width: 100%;
+  border-radius: 1rem;
+  padding: .2rem .7rem;
 }

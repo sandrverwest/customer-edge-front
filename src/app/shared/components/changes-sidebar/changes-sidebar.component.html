@@ -1,0 +1,32 @@
+<div class="aside-block" [class.block-shadow]="true">
+  <div class="title">Changes History</div>
+  <div class="pad05">
+    <div>
+      <input class="filter" type="search" placeholder="Search...">
+    </div>
+    <hr>
+    <div><a [routerLink]="['/', 'changeslist']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Current Draft</a></div>
+    <hr>
+    <div class="pad0x1">Today:</div>
+    <div class="inline">
+      <a [routerLink]="['/', 'changeslist', '1045']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">10:45 AM</a>
+      <a [routerLink]="['/', 'changeslist', '0124']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">1:24 PM</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">4:03 PM</a>
+    </div>
+    <hr>
+    <div class="pad0x1">Yesterday:</div>
+    <div class="inline">
+      <a [routerLink]="['/', 'changeslist', '6565']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">9:18 AM</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">4:12 PM</a>
+    </div>
+    <hr>
+    <div class="pad0x1">This week:</div>
+    <div class="inline">
+      <a [routerLink]="['/', 'changeslist', '6565']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">2/17/2025</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">2/18/2025</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">2/19/2025</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">2/20/2025</a>
+      <a [routerLink]="['/', 'changeslist', '0403']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">2/21/2025</a>
+    </div>
+  </div>
+</div>

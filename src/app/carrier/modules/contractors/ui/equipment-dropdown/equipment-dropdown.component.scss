@@ -1,0 +1,24 @@
+svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: rgba(var(--link-clr), .4);
+}
+
+svg:hover {
+  cursor: pointer;
+  fill: rgba(var(--link-clr), 1);
+}
+
+.container {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius);
+  z-index: 100;
+}
+
+.container > div {
+  padding: .5rem;
+}

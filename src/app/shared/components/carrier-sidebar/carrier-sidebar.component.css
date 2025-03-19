@@ -1,3 +1,4 @@
+a {color: #666666;}
 a:hover {
   text-decoration: underline;
   cursor: pointer;
@@ -26,8 +27,25 @@ a:hover {
   border-radius: var(--radius);
 }
 
-.logo a:hover {
+.aside-block > .logo a:hover {
   text-decoration:underline;
+}
+
+.no-logo-block {
+  font-weight: 300;
+  font-size: 1.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: #666666;
+}
+
+.no-logo {
+  font-weight: 400;
+  margin-right: .3rem;
+  padding: .1rem .3rem;
+  border: 1px solid #666666;
+  border-bottom-left-radius: .8rem;
+  border-top-right-radius: .8rem;
 }
 
 .title {

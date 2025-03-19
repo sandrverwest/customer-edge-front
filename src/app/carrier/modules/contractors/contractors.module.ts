@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import {SharedModule} from "../../../shared/shared.module";
 import {RouterModule} from "@angular/router";
-import { ContractorsComponent } from './components/contractors/contractors.component';
 import {ContractorsLayoutComponent} from "./contractors-layout/contractors-layout.component";
 import { NewContractorComponent } from './modals/new-contractor/new-contractor.component';
 import { NewContractorCardComponent } from './ui/new-contractor-card/new-contractor-card.component';
@@ -13,18 +12,23 @@ import {
 import { HiringContractorComponent } from './contractors-layout/hiring/hiring-contractor.component';
 import { ActiveContractorComponent } from './contractors-layout/active/active-contractor.component';
 import {LeavingContractorComponent} from "./contractors-layout/leaving/leaving-contractor.component";
+import { EquipmentDirective } from './directives/equipment.directive';
+import { EquipmentComponent } from './modals/equipment/equipment.component';
+import { EquipmentDropdownComponent } from './ui/equipment-dropdown/equipment-dropdown.component';
 
 
 
 
 @NgModule({
   declarations: [
-    ContractorsComponent,
     NewContractorComponent,
     NewContractorCardComponent,
     HiringContractorComponent,
     ActiveContractorComponent,
-    LeavingContractorComponent
+    LeavingContractorComponent,
+    EquipmentDirective,
+    EquipmentComponent,
+    EquipmentDropdownComponent
   ],
   imports: [
     SharedModule,

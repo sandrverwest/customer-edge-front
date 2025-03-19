@@ -4,13 +4,11 @@
   <div class="fleet-header">
     <div class="fleet-nav">
       <a [routerLink]="['hiring']" routerLinkActive="active">Hiring</a>
-      <a [routerLink]="['/', 'carrier', cid, 'contractors']" [routerLinkActiveOptions]="{exact: true}" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Active</a>
+      <a [routerLink]="['/', 'carrier', cid, 'contractors']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Active</a>
       <a [routerLink]="['leaving']" routerLinkActive="active">Leaving</a>
     </div>
     <div class="flex align-c gap1 relative">
-      <div style="height: 2rem; width: 12rem;">
-        <input class="filter" type="search" placeholder="Search...">
-      </div>
+      <input class="filter" type="search" placeholder="Search...">
       <svg class="new-ico" width="1.5rem" height="1.5rem" viewBox="0 0 24 24" (click)="addContractor()">
         <path d="M16.5,10.5h-3v-3a1.5,1.5,0,0,0-3,0v3h-3a1.5,1.5,0,0,0,0,3h3v3a1.5,1.5,0,0,0,3,0v-3h3a1.5,1.5,0,0,0,0-3Z"/>
       </svg>

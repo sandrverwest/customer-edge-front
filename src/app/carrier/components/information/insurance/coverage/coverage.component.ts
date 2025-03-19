@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output, Renderer2, ViewChild} from '@angular/core';
-import {Coverage} from "../../../../../shared/interfaces";
+import {Coverage, Coverages} from "../../../../../shared/interfaces";
 import {InsuranceAddEditComponent} from "../../../modals/insurance-add-edit/insurance-add-edit.component";
 import {ModalDirective} from "../../../../../shared/directives/modal.directive";
 import {CoveragesService} from "../../../../services/coverages.service";
@@ -13,7 +13,7 @@ import {SuccessErrorsService} from "../../../../../shared/services/success-error
 export class CoverageComponent {
   @ViewChild(ModalDirective, {static: false}) modalDirective: ModalDirective
   @Input() index: number
-  @Input() coverage: Coverage
+  @Input() coverages: Coverages
   @Input() isCollapsed:boolean
   @Output() coverageDeleteEmitter:EventEmitter<number> = new EventEmitter<number>
 
@@ -30,9 +30,9 @@ export class CoverageComponent {
     this.renderer.addClass(body, 'active-modal')
 
     const component = this.modalDirective.viewContainerRef.createComponent(InsuranceAddEditComponent)
-    component.instance.coverage = this.coverage
-    component.instance.coverageEmitter.subscribe(coverage => {
-      this.coverage = coverage
+    component.instance.coverages = this.coverages
+    component.instance.coverageEmitter.subscribe(coverages => {
+      this.coverages = coverages
     })
     component.instance.close.subscribe(()=> {
       this.modalDirective.viewContainerRef.clear()
@@ -41,10 +41,11 @@ export class CoverageComponent {
   }
 
   deleteCoverage() {
-    let isConfirmed = window.confirm('Are you sure you would like to delete ' + this.coverage.coverageName + ' coverage?')
+    let coveragesNames = this.coverages.coverageLines.map(cl => cl.coverageLineName).join('/');
+    let isConfirmed = window.confirm('Are you sure you would like to delete ' + coveragesNames + ' coverage?')
 
     if(isConfirmed) {
-      this.coveragesService.deleteSingleCoverage(this.coverage._id).subscribe({
+      this.coveragesService.deleteSingleCoverage(this.coverages._id).subscribe({
         next: (result) => {
           this.coverageDeleteEmitter.emit(this.index)
           this.successErrorsService.processing(false)
@@ -56,5 +57,19 @@ export class CoverageComponent {
         }
       })
     }
+  }
+
+  getFormattedExpirationDates(coverageLines: Coverage[]): string {
+    if (!coverageLines || coverageLines.length === 0) return '';
+
+    // Extract and format the dates
+    const formattedDates = coverageLines.map(cl =>
+      new Date(cl.coverageLineExpirationDate).toLocaleDateString('en-US', { month: '2-digit', day: '2-digit', year: 'numeric' })
+    );
+
+    // Check if all dates are the same
+    const allSame = formattedDates.every(date => date === formattedDates[0]);
+
+    return allSame ? formattedDates[0] : formattedDates.join(' ⋅ ');
   }
 }

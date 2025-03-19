@@ -24,7 +24,8 @@ import {ContenteditableValueAccessor} from "../shared/directives/editable-access
     RouterModule.forChild([
       {path: '', component: ChangesLayoutComponent,  children: [
           {path: '', component: ChangesListComponent},
-          {path: 'yesterday', component: CellComponent}
+          {path: '1045', component: ChangesListComponent},
+          {path: 'yesterday', component: ChangesListComponent}
         ]}
     ])
   ],

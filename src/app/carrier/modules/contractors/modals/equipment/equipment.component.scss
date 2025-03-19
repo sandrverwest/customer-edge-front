@@ -1,0 +1,128 @@
+//:host {
+//  display: table-row;
+//  background: rgb(var(--bg-clr));
+//  //background: rgba(var(--mainGamma), 0.1);
+//}
+
+table {
+  //border-left: 1px solid rgba(0, 0, 0, 0.1);
+  //border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  //border-right: 1px solid rgba(0, 0, 0, 0.1);
+  //border-bottom-left-radius: var(--radius);
+  //border-bottom-right-radius: var(--radius);
+  //box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.1);
+  border-spacing: 2px;
+}
+
+th, td {
+  //padding: .2rem;
+}
+
+th {
+  //background: rgba(var(--mainGamma), 0.3);
+  background-color: rgba(var(--link-clr), 0.05);
+  //color: #ffffff;
+}
+
+tr:focus {
+  outline: 1px solid rgba(var(--mainGamma), 1);
+  border-radius: var(--radius);
+}
+
+.toolbar {
+  position: relative;
+  background-color: rgba(var(--link-clr), 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.activated, .deactivated, .value, .own, .lp, .vehicle {
+  color: #ffffff;
+  //border-radius: var(--radius);
+}
+
+.activated {
+  background: rgba(var(--green), .4);
+  color: rgba(0,0,0, .5);
+  font-weight: bold;
+  border-radius: var(--radius);
+}
+
+.deactivated {
+  background: rgba(var(--red), .4);
+  color: rgba(0,0,0, .5);
+  font-weight: bold;
+  border-radius: var(--radius);
+}
+
+.value {
+  background: rgba(var(--mainGamma), .4);
+  color: rgba(0,0,0, .8);
+  //font-weight: bold;
+}
+
+.own, .truck {
+  background: rgba(var(--mainGamma), .4);
+  color: rgba(0,0,0, .8);
+  font-weight: 500;
+  font-size: .8rem;
+  border-radius: var(--radius);
+}
+
+.lp {
+  background: rgba(60, 185, 194, .9);
+  color: rgba(0,0,0, .8);
+  font-weight: 500;
+  font-size: .8rem;
+  border-radius: var(--radius);
+}
+
+.rental, .trailer {
+  background: rgba(249,203,156, .9);
+  color: rgba(0,0,0, .8);
+  font-weight: 500;
+  font-size: .8rem;
+  border-radius: var(--radius);
+}
+
+.contractor-details {
+  background: rgba(var(--link-clr), .1);
+  //border-top: 1px solid rgba(0,0,0, .1);
+  border-bottom: 1px solid rgba(0,0,0, .1);
+  //color: #ffffff;
+}
+
+.contractor-details svg {
+  //fill: rgba(0,0,0, .4);
+  fill: rgba(var(--link-clr), .7);
+  //fill: #ffffff;
+  width: 1rem;
+  height: 1rem;
+}
+
+.hiring {
+  padding: .2rem .5rem;
+  color: #ffffff;
+  background: rgba(var(--mainGamma), 1);
+  border-radius: var(--radius);
+}
+
+.active {
+  padding: .2rem .5rem;
+  color: #ffffff;
+  background: rgba(var(--green), 1);
+  border-radius: var(--radius);
+}
+
+.terminated {
+  padding: .2rem .5rem;
+  color: #ffffff;
+  background: rgba(var(--orange), 1);
+  border-radius: var(--radius);
+}
+
+.n-a {
+  background: #DDDDDD;
+  color: #AAAAAA;
+  //padding: .2rem .4rem;
+  border-radius: var(--radius);
+}

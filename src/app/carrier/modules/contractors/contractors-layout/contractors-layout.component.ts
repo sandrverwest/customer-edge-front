@@ -9,7 +9,7 @@ import {SuccessErrorsService} from "../../../../shared/services/success-errors.s
 import {LoaderService} from "../../../../shared/services/loader.service";
 
 @Component({
-  selector: 'app-contractors',
+  selector: 'app-equipment',
   templateUrl: './contractors-layout.component.html',
   styleUrls: ['./contractors-layout.component.scss']
 })

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarriersService } from 'src/app/shared/services/fetch/carriers.service';
 import {ChangesDataService} from 'src/app/shared/services/changesdata.service';
 import {UserService} from "../../../authorization/services/user.service";
-import {Adds, ChangesItem, Removals} from "../../../shared/interfaces";
+import {Adds, Carrier, ChangesItem, Removals} from "../../../shared/interfaces";
 
 @Component({
   selector: 'app-changes-list',
@@ -10,9 +10,19 @@ import {Adds, ChangesItem, Removals} from "../../../shared/interfaces";
   styleUrls: ['./changes-list.component.css'],
 })
 export class ChangesListComponent implements OnInit {
-  constructor(public user: UserService, public dataService: ChangesDataService) { }
+  constructor(public user: UserService, public dataService: ChangesDataService, private carriersService: CarriersService) { }
+
+  carriersNameList:Carrier[] = []
 
   ngOnInit() {
+    this.carriersService.getCarriersMenu().subscribe({
+      next: carriers => {
+        this.carriersNameList = carriers
+      },
+      error: error => {
+        console.log('changes list carrier load' + error)
+      }
+    })
   }
 
   anotherAddition() {
@@ -26,11 +36,10 @@ export class ChangesListComponent implements OnInit {
       value: null,
       ntl: false,
       leasedTo: null,
-      addressLine1: null,
-      addressLine2: null,
+      addressLine: null,
       lossPayee: null,
       notes: null,
-      requestedBy: 'Kerice Brendle',
+      requestedBy: null,
     }
     this.dataService.adds.push(newAddsItem)
     console.log(newAddsItem)

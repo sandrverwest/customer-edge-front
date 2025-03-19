@@ -19,6 +19,7 @@ import {environment} from "../environments/environment";
 import {userInit, UserService} from "./authorization/services/user.service";
 import {User} from "./shared/interfaces";
 import {Router} from "@angular/router";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -50,7 +51,8 @@ const INITIALIZER_PROVIDER:Provider = {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [INTERCEPTOR_PROVIDER, INITIALIZER_PROVIDER],
   exports: [],

@@ -20,6 +20,7 @@ import {CarrierSidebarComponent} from "./components/carrier-sidebar/carrier-side
 import { NumberToSsnPipe } from './pipes/number-to-ssn.pipe';
 import { NumberToEinPipe } from './pipes/number-to-ein.pipe';
 import { UsaPhonePipe } from './pipes/usa-phone.pipe';
+import { ChangesSidebarComponent } from './components/changes-sidebar/changes-sidebar.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { UsaPhonePipe } from './pipes/usa-phone.pipe';
     ContainerLoaderComponent,
     UsersOnlineComponent,
     CarrierSidebarComponent,
+    ChangesSidebarComponent,
   ],
   declarations: [
     HeaderComponent,
@@ -68,6 +70,7 @@ import { UsaPhonePipe } from './pipes/usa-phone.pipe';
     NumberToSsnPipe,
     NumberToEinPipe,
     UsaPhonePipe,
+    ChangesSidebarComponent,
   ],
   providers: [
     CurrencyPipe,

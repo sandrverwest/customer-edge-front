@@ -3,11 +3,11 @@
     <div class="logo"><span class="customer">CUSTOMER</span>EDGE</div>
     <div class="header-container">
       <div class="nav-links">
+<!--        <input class="filter" type="search" placeholder="Search...">-->
         <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
         <a routerLink="/changeslist" routerLinkActive="active">Changes List</a>
         <a routerLink="/help" routerLinkActive="active">Help</a>
       </div>
-
       <div class="flex align-c justify-s" style="height: 100%">
         <app-userbar class="user-bar" *ngIf="user.userData$ | async as userData" [userData]="userData"></app-userbar>
         <div *ngIf="user.userError$ | async as userError">error: {{userError}}</div>

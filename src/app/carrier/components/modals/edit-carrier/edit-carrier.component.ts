@@ -47,13 +47,13 @@ export class EditCarrierComponent implements OnInit{
 
     if(this.data.divisions?.length) {
         this.divisionsArray = this.data.divisions.map(division => {
-            return new FormControl(division)
+            return new FormControl(division, Validators.required)
         })
     }
 
     if(this.data.operations?.length) {
         this.operationsArray = this.data.operations.map(operation => {
-            return new FormControl(operation)
+            return new FormControl(operation, Validators.required)
         })
     }
 
@@ -79,6 +79,7 @@ export class EditCarrierComponent implements OnInit{
       divisions: new FormArray(this.divisionsArray),
       operations: new FormArray(this.operationsArray)
     })
+
   }
 
 
@@ -102,18 +103,19 @@ export class EditCarrierComponent implements OnInit{
   }
 
   anotherDivision() {
-    const division = new FormControl()
+    const division = new FormControl(null, Validators.required)
     this.divisions.push(division)
   }
   removeDivision(index:number) {
     this.divisions.removeAt(index)
   }
+
   get divisions():FormArray {
       return this.form.get('divisions') as FormArray;
   }
 
   anotherOperation() {
-    const operation = new FormControl()
+    const operation = new FormControl(null, Validators.required)
     this.operations.push(operation)
   }
   removeOperation(index:number) {

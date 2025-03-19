@@ -27,7 +27,7 @@
   </div>
 
   <div class="auto-overflow-x">
-    <app-coverage *ngFor="let coverage of coverages; let index = index" [coverage]="coverage" [index]="index" [isCollapsed]="isCollapsed" (coverageDeleteEmitter)="deleteCoverage($event)"></app-coverage>
+    <app-coverage *ngFor="let coverages of coverages; let index = index" [coverages]="coverages" [index]="index" [isCollapsed]="isCollapsed" (coverageDeleteEmitter)="deleteCoverage($event)"></app-coverage>
 
     <ng-container *ngIf="!coverages.length">
       <div class="flex justify-c pad1">

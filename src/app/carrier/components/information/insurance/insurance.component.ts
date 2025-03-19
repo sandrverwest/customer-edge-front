@@ -4,7 +4,7 @@ import {ActivatedRoute, Params} from "@angular/router";
 import {PhotoUploaderComponent} from "../../../../shared/components/photo-uploader/photo-uploader.component";
 import {ModalDirective} from "../../../../shared/directives/modal.directive";
 import {InsuranceAddEditComponent} from "../../modals/insurance-add-edit/insurance-add-edit.component";
-import {Coverage, Producer} from "../../../../shared/interfaces";
+import {Coverages, Producer} from "../../../../shared/interfaces";
 import {CoveragesService} from "../../../services/coverages.service";
 import {catchError, forkJoin, map, Observable, of, Subscription} from "rxjs";
 import {ProducersService} from "../../../../shared/services/fetch/producers.service";
@@ -16,7 +16,7 @@ import {ProducersService} from "../../../../shared/services/fetch/producers.serv
 })
 export class InsuranceComponent implements OnInit, OnDestroy{
   @ViewChild(ModalDirective, {static: false}) modalDirective: ModalDirective
-  coverages:Coverage[] = []
+  coverages:Coverages[] = []
 
   isCollapsed:boolean
 
@@ -36,8 +36,8 @@ export class InsuranceComponent implements OnInit, OnDestroy{
       this.isCollapsed = false
     }
 
-    this.paramSubscription = this.route.parent?.params.subscribe((params:Params) => {
-      this.fetchData(params.id)
+    this.paramSubscription = this.route.parent?.params.subscribe((carrierID:Params) => {
+      this.fetchData(carrierID.id)
     })
   }
 
@@ -84,7 +84,7 @@ export class InsuranceComponent implements OnInit, OnDestroy{
 
     forkJoin(requests).pipe(
       map(([producers, coverages]) => {
-        const mergedArrays = coverages.map((coverage:Coverage ) => {
+        const mergedArrays = coverages.map((coverage:Coverages ) => {
           return {...producers.find((producer:Producer) => {
               return coverage.producerID === producer._id
             }), ...coverage}

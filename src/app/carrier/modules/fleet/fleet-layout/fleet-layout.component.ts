@@ -17,59 +17,7 @@ export class FleetLayoutComponent implements OnInit, OnDestroy{
   equipment: Equipment[] = []
 
 
-  trucks: Equipment[] = [
-    {
-      contractor: 'Ivan Shykal',
-      equipmentType: 'TRUCK',
-      ownership: 'OWNN',
-      unitNumber: '3546',
-      vin: '3AKJGLDV8HSHY7779',
-      year: 2017,
-      make: 'FRHT',
-      value: 70000,
-      cl: false,
-      pd: true,
-      ntl: true,
-    },
-    {
-      contractor: 'Ivan Shykal',
-      equipmentType: 'TRUCK',
-      ownership: 'OWNN',
-      unitNumber: '3768',
-      vin: '4V4NC9EH6FN187342',
-      year: 2015,
-      make: 'VOLV',
-      value: 40000,
-      cl: true,
-      pd: true,
-      ntl: true,
-    },
-    {
-      equipmentType: 'TRUCK',
-      ownership: 'LP',
-      unitNumber: '1748',
-      vin: '3AKJGLDR8HSHD9455',
-      year: 2017,
-      make: 'FRHT',
-      value: 80000,
-      cl: true,
-      pd: true,
-      ntl: true,
-    },
-    {
-      contractor: 'John Dou',
-      equipmentType: 'TRUCK',
-      ownership: 'OWNN',
-      unitNumber: '3768',
-      vin: '4V4NC9EH6FN187342',
-      year: 2015,
-      make: 'VOLV',
-      value: 40000,
-      cl: true,
-      pd: true,
-      ntl: true,
-    },
-  ]
+  trucks: Equipment[] = []
 
   constructor(
     private socketService: SocketService,

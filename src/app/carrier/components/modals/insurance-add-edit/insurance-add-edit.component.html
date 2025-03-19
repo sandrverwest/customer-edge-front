@@ -2,8 +2,8 @@
 <div class="modal">
   <div class="modal-title">
     <div class="m-title">
-      <ng-container *ngIf="coverage"><b>{{coverage.coverageName}}</b> - Edit Coverage</ng-container>
-      <ng-container *ngIf="!coverage">New Coverage</ng-container>
+      <ng-container *ngIf="coverages"><b><ng-container *ngFor="let coverageLines of coverages.coverageLines">{{coverageLines.coverageLineName}}</ng-container></b> - Edit Coverage</ng-container>
+      <ng-container *ngIf="!coverages">New Coverage</ng-container>
     </div>
     <div class="m-close" (click)="close.emit()">
       <svg viewBox="0 0 24 24">
@@ -13,23 +13,20 @@
   </div>
   <div class="modal-content scrollbar radius0" style="border-radius: 0;">
 
-    <form [formGroup]="form" autocomplete="off">
+    <form [formGroup]="coveragesForm" autocomplete="off">
       <div class="grid tmpl-1x3 align-b gap1">
-        <label for="coverageName">Coverage Name:</label><div><input id="coverageName" formControlName="coverageName" size="30"></div>
 
-        <label for="producerID">Producer Name:</label>
+        <label for="producerID">Producer:</label>
         <div>
           <select id="producerID" formControlName="producerID" (change)="loadProducer($event)" style="width: 20rem">
             <option></option>
             <option *ngFor="let producer of producers" [value]="producer._id">{{producer.name}}</option>
           </select>
         </div>
-
-
         <ng-container *ngIf="producer$ | async as producer">
-          <label for="producerID">COI Requests:</label><div>{{producer.coiRequests}}</div>
+          <label>COI Requests:</label><div>{{producer.coiRequests}}</div>
           <ng-container *ngIf="producer.agents.length">
-            <label for="producerID">Agents:</label>
+            <label>Agents:</label>
             <div class="flex colum gap05">
               <div *ngFor="let agent of producer.agents" class="flex row align-c gap05">
                 <span>{{agent.name}}</span><span class="at-sign">@</span><span>{{agent.email}}</span>
@@ -37,19 +34,55 @@
             </div>
           </ng-container>
         </ng-container>
+      </div>
+        <hr/>
+      <ng-container formArrayName="coverageLines" *ngFor="let control of coverageLines.controls; let agentIndex = index">
+        <div class="flex justify-b align-c coverageLine">
 
+          <div [formGroupName]="agentIndex" class="grid tmpl-1x3 align-b gap1">
+            <label for="coverageLineName">Coverage Name:</label>
+            <div>
+              <input id="coverageLineName" formControlName="coverageLineName" size="20">
+            </div>
+            <label for="coverageLineCarrier">Insurance Carrier:</label><div><input id="coverageLineCarrier" formControlName="coverageLineCarrier" size="30"></div>
+            <label for="coverageLineExpirationDate">Expiration Date:</label><div class="flex align-c justify-s gap1"><span appTooltip="MM/DD/YYYY"><input id="coverageLineExpirationDate" formControlName="coverageLineExpirationDate" size="10"></span><label for="coverageLinePolicyNumber">Policy #:</label><input id="coverageLinePolicyNumber" formControlName="coverageLinePolicyNumber" size="15"></div>
+          </div>
 
-        <label for="expiration">Policy Expiration:</label><div><span appTooltip="MM/DD/YYYY"><input id="expiration" formControlName="expiration" size="10"></span></div>
+          <div class="relative">
+            <span class="delete-cross-big" style="position: absolute;right:0rem;" (click)="removeCoverageLine(agentIndex)">
+              <svg viewBox="0 0 24 24" width="2rem" height="2rem">
+                <polygon points="19.061 7.061 16.939 4.939 12 9.879 7.061 4.939 4.939 7.061 9.879 12 4.939 16.939 7.061 19.061 12 14.121 16.939 19.061 19.061 16.939 14.121 12 19.061 7.061"/>
+              </svg>
+            </span>
+          </div>
+        </div>
+        <hr/>
+      </ng-container>
 
+      <div class="grid tmpl-1x3 align-b gap1"><div></div><div><button (click)="anotherCoverageLine()" class="another-row" [disabled]="coverageLines.invalid">+ coverage</button></div></div>
+      <hr/>
+      <div class="grid tmpl-1x3 align-b gap1">
         <label for="notes">Notes:</label><textarea id="notes" formControlName="notes" appAutoResizeTextarea></textarea>
+      </div>
+      <hr/>
+      <div class="flex align-c justify-c gap1">
+        <label for="primary">Make it Primary Coverage</label><div><input type="checkbox" id="primary" formControlName="isPrimary" ></div>
+      </div>
+      <div class="flex align-c justify-c gap1 margtop1" *ngIf="this.coveragesForm.get('isPrimary')?.value == true">
+        <label for="primaryPolicyType">Policy Type</label><div>
+        <select id="primaryPolicyType" formControlName="primaryPolicyType">
+          <option>Any Auto</option>
+          <option>Scheduled</option>
+        </select>
+      </div>
       </div>
 
     </form>
   </div>
   <div>
     <div class="sticky-container flex justify-c">
-      <button *ngIf="!coverage" type="button" class="blue-b" (click)="addCoverage()" [disabled]="this.form.invalid">Add Coverage<button-loader></button-loader></button>
-      <button *ngIf="coverage" type="button" class="blue-b" (click)="saveCoverage()" [disabled]="this.form.invalid">Save<button-loader></button-loader></button>
+      <button *ngIf="!coverages" type="button" class="blue-b" (click)="addCoverage()" [disabled]="this.coveragesForm.invalid">Add Coverage<button-loader></button-loader></button>
+      <button *ngIf="coverages" type="button" class="blue-b" (click)="saveCoverage()" [disabled]="this.coveragesForm.invalid">Save<button-loader></button-loader></button>
     </div>
   </div>
 </div>

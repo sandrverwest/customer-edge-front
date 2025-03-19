@@ -44,9 +44,9 @@
             <th>Action</th>
           </tr>
           <tr *ngFor="let unit of trucks; let odd = odd" [class.odd]="odd">
-            <td>{{unit.contractor}}</td>
+            <td>{{unit.ssn_ein}}</td>
             <td>{{unit.equipmentType}}</td>
-            <td>{{unit.ownership}}</td>
+            <td>{{unit.ownershipType}}</td>
             <td>{{unit.unitNumber}}</td>
             <td>{{unit.vin}}</td>
             <td>{{unit.year}}</td>

@@ -1,0 +1,30 @@
+.title-index {
+  background: rgb(var(--bg-clr));
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.row-index {
+  position: relative;
+  //cursor: pointer;
+  font-size: .6rem;
+  background: rgb(var(--bg-clr));
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+
+.active-contractor td:not(.row-index)  {
+  //background-color: rgba(var(--mainGamma), 0.6);
+  background: rgba(var(--link-clr), 0.5);
+  color: #ffffff;
+}
+
+//.active-contractor td:not(.row-index) {
+//  color: red;
+//}
+
+.action-cell {
+  position: relative;
+  width: 4rem;
+}

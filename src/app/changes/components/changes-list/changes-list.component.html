@@ -1,36 +1,36 @@
 <div class="main-block block-shadow">
   <div class="flex align-s justify-c pad1">
 
-    <div class="list">
+    <div class="relative auto-overflow-x">
       <div id="adds">
-        <table>
+        <table class="changes-table">
           <tr><td class="adds-title adds-bg">O/O ADDING LIST</td></tr>
-          <tr *ngFor="let add of dataService.adds; let i = index" class="hover-item">
+          <tr *ngFor="let add of dataService.adds; let i = index; let first = first" class="hover-item">
             <td>
-              <adds-item [id]="i+1" [add]="add" [i]="i"></adds-item>
+              <adds-item [id]="i+1" [add]="add" [i]="i" [first]="first" [carriersNameList]="carriersNameList"></adds-item>
             </td>
-            <td class="item-control">
-              <div class="remove-item" (click)="removeAddsItem(i)">
-                <svg viewBox="0 0 24 24">
-                  <path d="M14.121,12,18,8.117A1.5,1.5,0,0,0,15.883,6L12,9.879,8.11,5.988A1.5,1.5,0,1,0,5.988,8.11L9.879,12,6,15.882A1.5,1.5,0,1,0,8.118,18L12,14.121,15.878,18A1.5,1.5,0,0,0,18,15.878Z"/>
-                </svg>
-              </div>
-              <div (click)="copyItemToClipboard((i+1).toString())" class="copy-item">
-                <svg viewBox="0 0 24 24">
-                  <path d="m15 20h-10a5.006 5.006 0 0 1 -5-5v-10a5.006 5.006 0 0 1 5-5h10a5.006 5.006 0 0 1 5 5v10a5.006 5.006 0 0 1 -5 5zm9-1v-13a1 1 0 0 0 -2 0v13a3 3 0 0 1 -3 3h-13a1 1 0 0 0 0 2h13a5.006 5.006 0 0 0 5-5z"/>
-                </svg>
-              </div>
-            </td>
+<!--            <td class="item-control">-->
+<!--              <div class="remove-item" (click)="removeAddsItem(i)">-->
+<!--                <svg viewBox="0 0 24 24">-->
+<!--                  <path d="M14.121,12,18,8.117A1.5,1.5,0,0,0,15.883,6L12,9.879,8.11,5.988A1.5,1.5,0,1,0,5.988,8.11L9.879,12,6,15.882A1.5,1.5,0,1,0,8.118,18L12,14.121,15.878,18A1.5,1.5,0,0,0,18,15.878Z"/>-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--              <div (click)="copyItemToClipboard((i+1).toString())" class="copy-item">-->
+<!--                <svg viewBox="0 0 24 24">-->
+<!--                  <path d="m15 20h-10a5.006 5.006 0 0 1 -5-5v-10a5.006 5.006 0 0 1 5-5h10a5.006 5.006 0 0 1 5 5v10a5.006 5.006 0 0 1 -5 5zm9-1v-13a1 1 0 0 0 -2 0v13a3 3 0 0 1 -3 3h-13a1 1 0 0 0 0 2h13a5.006 5.006 0 0 0 5-5z"/>-->
+<!--                </svg>-->
+<!--              </div>-->
+<!--            </td>-->
           </tr>
         </table>
       </div>
 
       <div id="removals">
-        <table>
+        <table class="changes-table">
           <tr><td class="removals-title removals-bg">O/O REMOVAL LIST</td></tr>
           <tr>
             <td>
-              <table class="item" *ngFor="let item of dataService.removals; let i = index">
+              <table class="item changes-table" *ngFor="let item of dataService.removals; let i = index">
                 <tr>
                   <th>Item</th><th>Owner</th><th>Unit</th><th>Type</th><th>VIN#</th><th>Year</th><th>Make</th><th>Value</th><th>NTL</th><th>Leased to</th></tr>
                 <tr>
