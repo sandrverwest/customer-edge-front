@@ -60,7 +60,7 @@ export class UserSecuringComponent {
   }
 
   deleteUser(){
-    const confirmed = confirm(`Are you sure you want to completely delete ${this.user.first_name} ${this.user.last_name}'s account? The account cannot be restored.`)
+    const confirmed = confirm(`Are you sure you want to completely delete ${this.user.firstName} ${this.user.lastName}'s account? The account cannot be restored.`)
     if (confirmed) {
       this.saverService.show()
       this.usersService.deleteUser(this.user._id).subscribe({

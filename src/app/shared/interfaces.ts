@@ -9,8 +9,10 @@ export interface Token {
 
 export interface User {
   _id: string
-  first_name: string
-  last_name: string
+  customerId: String
+  firstName: string
+  lastName: string
+  username: String
   email: string
   phone?: string
   extension?: string

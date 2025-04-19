@@ -1,9 +1,9 @@
 <div class="new-user-block sticky-container">
   <form [formGroup]="newUserForm" (submit)="createUser()" autocomplete="off">
-    <label for="first_name">First Name:</label><div><input id="first_name" formControlName="first_name" size="17"></div>
-    <label for="last_name">Last Name:</label><div><input id="last_name" formControlName="last_name" size="17"></div>
+    <label for="firstName">First Name:</label><div><input id="firstName" formControlName="firstName" size="17"></div>
+    <label for="lastName">Last Name:</label><div><input id="lastName" formControlName="lastName" size="17"></div>
 
-    <label for="email">Email:</label><div><input id="email" formControlName="email" size="30"></div>
+    <label for="username">Username:</label><div><input id="username" formControlName="username" size="30"></div>
     <label for="password">Password:</label><div><input type="password" id="password" formControlName="password" size="17"></div>
 
     <div class="flex justify-c" style="grid-column: 1/5"><button type="submit" class="blue-b" [disabled]="newUserForm.invalid">Add <b>New</b> User</button></div>

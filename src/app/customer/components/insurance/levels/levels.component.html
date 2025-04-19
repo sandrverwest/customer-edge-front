@@ -2,7 +2,7 @@
   <a *ngFor="let level of levels" [routerLink]="['level', level.level]" routerLinkActive="active">
     {{level.level}}
   </a>
-  <a [routerLink]="['/', 'admin', 'insurance', 'levels']" fragment="new" class="new">
+  <a [routerLink]="['/', 'customer', 'insurance', 'levels']" fragment="new" class="new">
     +
   </a>
 </div>

@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
 
 :root {
   /* --mainGamma: 22, 135, 167; */
@@ -10,16 +10,11 @@
   --green: 106, 168, 79;
   --orange: 230, 145, 56;
   --red: 205,92,92;
-  //--red: 240,128,128;
 
   --radius: 0.3rem;
   color: #333;
-  //--fontFamily: 'Open Sans', sans-serif;
-  //font-family: 'Open Sans', sans-serif;
-  --fontFamily: "Roboto", "Helvetica", "Arial", sans-serif;
-  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
-  //--fontFamily: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
-  //font-family: Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
+  --fontFamily: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 90%;
   font-weight: normal;
 }
@@ -965,6 +960,3 @@ tr.last td {
   width: 1.5rem;
   height: 1.5rem;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

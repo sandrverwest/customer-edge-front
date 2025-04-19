@@ -20,6 +20,7 @@ const routes: Routes = [
       {path: 'carrier/:id', loadChildren: () => import('./carrier/carrier.module').then(m => m.CarrierModule)}
     ]},
   {path: 'login', loadChildren: () => import('./authorization/authorization.module').then(m => m.AuthorizationModule)},
+  {path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule)},
   {path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)},
   {path: '404', component: NotFoundComponent},
   {path: '**', redirectTo: '/404'}

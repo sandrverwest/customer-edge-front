@@ -4,11 +4,11 @@ import {SectionTitleService} from "../../shared/services/section-title.service";
 import {Observable, Subscription} from "rxjs";
 
 @Component({
-  selector: 'app-admin-layout',
-  templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  selector: 'app-customer-layout',
+  templateUrl: './customer-layout.component.html',
+  styleUrls: ['./customer-layout.component.scss']
 })
-export class AdminLayoutComponent implements OnInit, AfterViewInit {
+export class CustomerLayoutComponent implements OnInit, AfterViewInit {
   title$: Observable<string | null>
   constructor(private sectionTitleService: SectionTitleService) {
   }

@@ -55,7 +55,9 @@ const INITIALIZER_PROVIDER:Provider = {
     BrowserAnimationsModule
   ],
   providers: [INTERCEPTOR_PROVIDER, INITIALIZER_PROVIDER],
-  exports: [],
+  exports: [
+    LeftSidebarComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -47,7 +47,7 @@ export class UsersComponent implements OnInit, AfterViewInit{
     const value = event.target.value
 
     this.users = this.filtered.filter((element) => {
-      const fullName = `${element.first_name} ${element.last_name}`
+      const fullName = `${element.firstName} ${element.lastName}`
 
       if(fullName.toLowerCase().indexOf(value.toLowerCase()) !== -1) {
         return true

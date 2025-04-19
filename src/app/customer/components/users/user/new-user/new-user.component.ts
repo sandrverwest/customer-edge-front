@@ -18,9 +18,9 @@ export class NewUserComponent {
   }
   ngOnInit() {
     this.newUserForm = new FormGroup({
-      first_name: new FormControl(null, Validators.required),
-      last_name: new FormControl(null, Validators.required),
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      firstName: new FormControl(null, Validators.required),
+      lastName: new FormControl(null, Validators.required),
+      username: new FormControl(null, [Validators.required, Validators.minLength(4)]),
       password: new FormControl(null, [Validators.required, Validators.minLength(6)])
     })
   }
@@ -38,6 +38,7 @@ export class NewUserComponent {
       error: error => {
         this.errorsService.setError('Create User', error)
         this.saverService.hide()
+        console.log(error)
       }
     })
   }

@@ -1,8 +1,8 @@
 <nav>
   <div>
-    <a [routerLink]="['/', 'admin', 'general', 'users']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">All Users</a>
-    <a [routerLink]="['/', 'admin', 'general', 'users']" [queryParams]="{ active: 'true'}" routerLinkActive="active">Active</a>
-    <a [routerLink]="['/', 'admin', 'general', 'users']" [queryParams]="{ active: 'false'}" routerLinkActive="active">Deactivated</a>
+    <a [routerLink]="['/', 'customer', 'general', 'users']" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">All Users</a>
+    <a [routerLink]="['/', 'customer', 'general', 'users']" [queryParams]="{ active: 'true'}" routerLinkActive="active">Active</a>
+    <a [routerLink]="['/', 'customer', 'general', 'users']" [queryParams]="{ active: 'false'}" routerLinkActive="active">Deactivated</a>
   </div>
   <div>
     <input (input)="userSearch($event)" placeholder="Search...">

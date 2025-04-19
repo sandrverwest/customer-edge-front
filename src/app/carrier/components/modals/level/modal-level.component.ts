@@ -5,7 +5,7 @@ import {levelGuideline} from "../../../../shared/interfaces";
 @Component({
   selector: 'app-level',
   templateUrl: './modal-level.component.html',
-  styleUrls: ['./modal-level.component.scss', '../../../../admin/components/insurance/levels/levels.component.scss']
+  styleUrls: ['./modal-level.component.scss', '../../../../customer/components/insurance/levels/levels.component.scss']
 })
 export class ModalLevelComponent {
   @Output() close = new EventEmitter<void>()
